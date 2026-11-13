@@ -1,980 +1,980 @@
-!DOCTYPE html
-html lang=id class=scroll-smooth
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleSmartGrade Proportional Adjuster — Aplikasi Katrol Nilai Adil & Proporsionaltitle
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartGrade Proportional Adjuster — Aplikasi Katrol Nilai Adil & Proporsional</title>
     
-    !-- Tailwind CSS CDN --
-    script src=httpscdn.tailwindcss.comscript
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    !-- Google Fonts Inter --
-    link rel=preconnect href=httpsfonts.googleapis.com
-    link rel=preconnect href=httpsfonts.gstatic.com crossorigin
-    link href=httpsfonts.googleapis.comcss2family=Interwght@300;400;500;600;700;800&display=swap rel=stylesheet
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    !-- FontAwesome Icons CDN --
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.5.1cssall.min.css
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    !-- SheetJS (XLSX) CDN for Excel Export --
-    script src=httpscdnjs.cloudflare.comajaxlibsxlsx0.18.5xlsx.full.min.jsscript
+    <!-- SheetJS (XLSX) CDN for Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-    script
+    <script>
         tailwind.config = {
-            theme {
-                extend {
-                    fontFamily {
-                        sans ['Inter', 'sans-serif'],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
                     },
-                    colors {
-                        edu {
-                            50 '#ecfdf5',
-                            100 '#d1fae5',
-                            200 '#a7f3d0',
-                            300 '#6ee7b7',
-                            400 '#34d399',
-                            500 '#10b981',
-                            600 '#059669',
-                            700 '#047857',
-                            800 '#065f46',
-                            900 '#064e3b',
+                    colors: {
+                        edu: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
                         }
                     }
                 }
             }
         }
-    script
+    </script>
 
-    style
+    <style>
         body {
-            font-family 'Inter', sans-serif;
-            background-color #f8fafc;
-            color #0f172a;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
         }
-         Custom Scrollbar 
-        -webkit-scrollbar {
-            width 8px;
-            height 8px;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        -webkit-scrollbar-track {
-            background #f1f5f9;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        -webkit-scrollbar-thumb {
-            background #cbd5e1;
-            border-radius 4px;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        -webkit-scrollbar-thumbhover {
-            background #94a3b8;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
-         Custom Range Slider 
+        /* Custom Range Slider */
         input[type=range] {
-            -webkit-appearance none;
-            background transparent;
+            -webkit-appearance: none;
+            background: transparent;
         }
-        input[type=range]-webkit-slider-runnable-track {
-            width 100%;
-            height 8px;
-            cursor pointer;
-            background #d1fae5;
-            border-radius 999px;
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #d1fae5;
+            border-radius: 999px;
         }
-        input[type=range]-webkit-slider-thumb {
-            height 20px;
-            width 20px;
-            border-radius 50%;
-            background #059669;
-            cursor pointer;
-            -webkit-appearance none;
-            margin-top -6px;
-            box-shadow 0 2px 5px rgba(0, 0, 0, 0.2);
-            border 2px solid #ffffff;
-            transition transform 0.15s ease;
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #059669;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: 2px solid #ffffff;
+            transition: transform 0.15s ease;
         }
-        input[type=range]-webkit-slider-thumbhover {
-            transform scale(1.15);
-            background #047857;
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #047857;
         }
         .mode-card-active {
-            border-color #059669 !important;
-            background-color #ecfdf5 !important;
-            box-shadow 0 4px 12px -2px rgba(5, 150, 105, 0.12);
+            border-color: #059669 !important;
+            background-color: #ecfdf5 !important;
+            box-shadow: 0 4px 12px -2px rgba(5, 150, 105, 0.12);
         }
-    style
-head
-body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-white
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-emerald-600 selection:text-white">
 
-    !-- ================= HEADER  NAVBAR ================= --
-    header class=bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 text-white shadow-lg sticky top-0 z-30
-        div class=max-w-7xl mx-auto px-4 smpx-6 lgpx-8 py-3.5
-            div class=flex flex-col smflex-row smitems-center smjustify-between gap-3
-                div class=flex items-center gap-3.5
-                    div class=w-11 h-11 rounded-xl bg-white15 backdrop-blur-md flex items-center justify-center border border-white25 shadow-inner shrink-0
-                        i class=fa-solid fa-scale-balanced text-emerald-200 text-xli
-                    div
-                    div
-                        div class=flex items-center gap-2 flex-wrap
-                            h1 class=text-lg smtext-xl font-bold tracking-tight text-whiteRuruAlbernEdu SmartGradeh1
-                            span class=text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-40020 text-emerald-100 border border-emerald-30030
+    <!-- ================= HEADER / NAVBAR ================= -->
+    <header class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-700 text-white shadow-lg sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/25 shadow-inner shrink-0">
+                        <i class="fa-solid fa-scale-balanced text-emerald-200 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white">RuruAlbernEdu SmartGrade</h1>
+                            <span class="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-100 border border-emerald-300/30">
                                 by.rurualbern
-                            span
-                        div
-                        p class=text-xs smtext-sm text-emerald-10090Aplikasi Katrol Nilai Rapor Otomatis, Adil, Transparan & Tanpa Merusak Peringkat Kelasp
-                    div
-                div
+                            </span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-emerald-100/90">Aplikasi Katrol Nilai Rapor Otomatis, Adil, Transparan & Tanpa Merusak Peringkat Kelas</p>
+                    </div>
+                </div>
 
-                !-- Quick Header Actions --
-                div class=flex items-center gap-2 self-start smself-auto
-                    button onclick=loadSampleData() class=inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs smtext-sm font-medium bg-white10 hoverbg-white20 text-white border border-white20 transition-all shadow-sm activescale-95
-                        i class=fa-solid fa-wand-magic-sparkles text-emerald-200i
-                        spanMuat Data Simulasispan
-                    button
-                    button onclick=openFormulaGuideModal() class=inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs smtext-sm font-medium bg-emerald-90050 hoverbg-emerald-90080 text-emerald-100 border border-emerald-40020 transition-all shadow-sm
-                        i class=fa-solid fa-circle-questioni
-                        span class=hidden mdinlinePanduan Rumusspan
-                    button
-                div
-            div
-        div
-    header
+                <!-- Quick Header Actions -->
+                <div class="flex items-center gap-2 self-start sm:self-auto">
+                    <button onclick="loadSampleData()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all shadow-sm active:scale-95">
+                        <i class="fa-solid fa-wand-magic-sparkles text-emerald-200"></i>
+                        <span>Muat Data Simulasi</span>
+                    </button>
+                    <button onclick="openFormulaGuideModal()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium bg-emerald-900/50 hover:bg-emerald-900/80 text-emerald-100 border border-emerald-400/20 transition-all shadow-sm">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span class="hidden md:inline">Panduan Rumus</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    !-- ================= MAIN CONTENT ================= --
-    main class=flex-1 max-w-7xl w-full mx-auto px-4 smpx-6 lgpx-8 py-6 space-y-6
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-        !-- TOP GRID CONFIGURATION (LEFT) & DATA INPUT (RIGHT) --
-        div class=grid grid-cols-1 lggrid-cols-12 gap-6 items-start
+        <!-- TOP GRID: CONFIGURATION (LEFT) & DATA INPUT (RIGHT) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-            !-- ================= MODULE A PANEL KONFIGURASI & PARAMETER KATROL ================= --
-            section class=lgcol-span-7 bg-white rounded-2xl shadow-sm border border-slate-20080 overflow-hidden
-                div class=bg-emerald-5070 border-b border-emerald-100 px-5 py-4 flex items-center justify-between
-                    div class=flex items-center gap-2.5
-                        span class=w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm
-                            i class=fa-solid fa-slidersi
-                        span
-                        div
-                            h2 class=font-bold text-slate-800 text-basePanel Konfigurasi & Parameter Katrolh2
-                            p class=text-xs text-slate-500Atur standar KKMKKTP dan pilih metode matematis penyesuaian nilaip
-                        div
-                    div
-                    span id=saveIndicator class=text-xs text-emerald-700 bg-emerald-10080 px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5
-                        i class=fa-solid fa-cloud-checki Tersimpan Otomatis
-                    span
-                div
+            <!-- ================= MODULE A: PANEL KONFIGURASI & PARAMETER KATROL ================= -->
+            <section class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                <div class="bg-emerald-50/70 border-b border-emerald-100 px-5 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+                            <i class="fa-solid fa-sliders"></i>
+                        </span>
+                        <div>
+                            <h2 class="font-bold text-slate-800 text-base">Panel Konfigurasi & Parameter Katrol</h2>
+                            <p class="text-xs text-slate-500">Atur standar KKM/KKTP dan pilih metode matematis penyesuaian nilai</p>
+                        </div>
+                    </div>
+                    <span id="saveIndicator" class="text-xs text-emerald-700 bg-emerald-100/80 px-2.5 py-1 rounded-full font-medium flex items-center gap-1.5">
+                        <i class="fa-solid fa-cloud-check"></i> Tersimpan Otomatis
+                    </span>
+                </div>
 
-                div class=p-5 space-y-5
-                    !-- Row 1 KKM, Pembulatan & Proteksi --
-                    div class=grid grid-cols-1 smgrid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-20070
-                        !-- Input KKM --
-                        div
-                            label for=kkmInput class=block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5
-                                Standar KKM  KKTP
-                            label
-                            div class=relative
-                                input type=number id=kkmInput min=0 max=100 step=1 value=75
-                                    oninput=handleConfigChange()
-                                    class=w-full pl-3.5 pr-12 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 font-bold text-base focusoutline-none focusring-2 focusring-emerald-500 focusborder-emerald-500 transition
-                                span class=absolute right-3 top-12 -translate-y-12 text-xs font-semibold text-slate-400POINspan
-                            div
-                            p class=text-[11px] text-slate-500 mt-1Batas minimal ketuntasan siswap
-                        div
+                <div class="p-5 space-y-5">
+                    <!-- Row 1: KKM, Pembulatan & Proteksi -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/70">
+                        <!-- Input KKM -->
+                        <div>
+                            <label for="kkmInput" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+                                Standar KKM / KKTP
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="kkmInput" min="0" max="100" step="1" value="75"
+                                    oninput="handleConfigChange()"
+                                    class="w-full pl-3.5 pr-12 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 font-bold text-base focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+                                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">POIN</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">Batas minimal ketuntasan siswa</p>
+                        </div>
 
-                        !-- Opsi Pembulatan --
-                        div
-                            label for=roundingSelect class=block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5
+                        <!-- Opsi Pembulatan -->
+                        <div>
+                            <label for="roundingSelect" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
                                 Opsi Pembulatan
-                            label
-                            select id=roundingSelect onchange=handleConfigChange()
-                                class=w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 font-medium text-sm focusoutline-none focusring-2 focusring-emerald-500 focusborder-emerald-500 transition
-                                option value=0Bulat Terdekat (Misal 82)option
-                                option value=11 Angka Desimal (Misal 82.4)option
-                                option value=22 Angka Desimal (Misal 82.45)option
-                            select
-                            p class=text-[11px] text-slate-500 mt-1Format angka nilai akhir raporp
-                        div
+                            </label>
+                            <select id="roundingSelect" onchange="handleConfigChange()"
+                                class="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition">
+                                <option value="0">Bulat Terdekat (Misal: 82)</option>
+                                <option value="1">1 Angka Desimal (Misal: 82.4)</option>
+                                <option value="2">2 Angka Desimal (Misal: 82.45)</option>
+                            </select>
+                            <p class="text-[11px] text-slate-500 mt-1">Format angka nilai akhir rapor</p>
+                        </div>
 
-                        !-- Proteksi Penurunan Nilai --
-                        div class=flex flex-col justify-between
-                            label class=block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5
+                        <!-- Proteksi Penurunan Nilai -->
+                        <div class="flex flex-col justify-between">
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
                                 Proteksi Nilai Asli
-                            label
-                            label for=preventDecreaseToggle class=flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-slate-300 cursor-pointer hoverbg-emerald-5040 transition
-                                input type=checkbox id=preventDecreaseToggle checked onchange=handleConfigChange()
-                                    class=w-4 h-4 text-emerald-600 rounded border-slate-300 focusring-emerald-500
-                                span class=text-xs font-semibold text-slate-700 leading-tightCegah Nilai Turun di Bawah Aslispan
-                            label
-                            p class=text-[11px] text-slate-500 mt-1Nilai tidak akan lebih rendah dari nilai awalp
-                        div
-                    div
+                            </label>
+                            <label for="preventDecreaseToggle" class="flex items-center gap-2.5 p-2.5 rounded-xl bg-white border border-slate-300 cursor-pointer hover:bg-emerald-50/40 transition">
+                                <input type="checkbox" id="preventDecreaseToggle" checked onchange="handleConfigChange()"
+                                    class="w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500">
+                                <span class="text-xs font-semibold text-slate-700 leading-tight">Cegah Nilai Turun di Bawah Asli</span>
+                            </label>
+                            <p class="text-[11px] text-slate-500 mt-1">Nilai tidak akan lebih rendah dari nilai awal</p>
+                        </div>
+                    </div>
 
-                    !-- Pilihan Mode Proporsi Katrol Nilai --
-                    div class=space-y-3
-                        label class=block text-xs font-semibold uppercase tracking-wider text-slate-600
-                            Pilih Mode Algoritma Proporsi Katrol Nilai
-                        label
+                    <!-- Pilihan Mode Proporsi Katrol Nilai -->
+                    <div class="space-y-3">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                            Pilih Mode Algoritma Proporsi Katrol Nilai:
+                        </label>
 
-                        div class=grid grid-cols-1 mdgrid-cols-3 gap-3
-                            !-- Mode 1 Card --
-                            div id=modeCard1 onclick=selectMode('interpolation')
-                                class=cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hoverborder-emerald-400 flex flex-col justify-between mode-card-active
-                                div
-                                    div class=flex items-center justify-between gap-2 mb-1.5
-                                        span class=text-xs font-bold px-2 py-0.5 rounded bg-emerald-600 text-whiteMODE 1 • UTAMAspan
-                                        i id=modeCheck1 class=fa-solid fa-circle-check text-emerald-600 text-basei
-                                    div
-                                    h3 class=font-bold text-slate-800 text-smInterpolasi Rentang Adilh3
-                                    p class=text-xs text-slate-600 mt-1 leading-relaxed
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <!-- Mode 1 Card -->
+                            <div id="modeCard1" onclick="selectMode('interpolation')"
+                                class="cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hover:border-emerald-400 flex flex-col justify-between mode-card-active">
+                                <div>
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-600 text-white">MODE 1 • UTAMA</span>
+                                        <i id="modeCheck1" class="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-800 text-sm">Interpolasi Rentang Adil</h3>
+                                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">
                                         Memetakan rentang nilai asli [Min–Max] ke rentang target baru [Min Baru–Max Baru] secara linier.
-                                    p
-                                div
-                                div class=mt-2.5 pt-2 border-t border-emerald-20060 text-[11px] font-medium text-emerald-800
-                                    i class=fa-solid fa-award mr-1i Paling direkomendasikan untuk Rapor
-                                div
-                            div
+                                    </p>
+                                </div>
+                                <div class="mt-2.5 pt-2 border-t border-emerald-200/60 text-[11px] font-medium text-emerald-800">
+                                    <i class="fa-solid fa-award mr-1"></i> Paling direkomendasikan untuk Rapor
+                                </div>
+                            </div>
 
-                            !-- Mode 2 Card --
-                            div id=modeCard2 onclick=selectMode('margin')
-                                class=cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hoverborder-emerald-400 flex flex-col justify-between
-                                div
-                                    div class=flex items-center justify-between gap-2 mb-1.5
-                                        span class=text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700MODE 2 • MARGINspan
-                                        i id=modeCheck2 class=fa-regular fa-circle text-slate-400 text-basei
-                                    div
-                                    h3 class=font-bold text-slate-800 text-smProporsi Sisa Margin 100h3
-                                    p class=text-xs text-slate-600 mt-1 leading-relaxed
+                            <!-- Mode 2 Card -->
+                            <div id="modeCard2" onclick="selectMode('margin')"
+                                class="cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hover:border-emerald-400 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700">MODE 2 • MARGIN</span>
+                                        <i id="modeCheck2" class="fa-regular fa-circle text-slate-400 text-base"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-800 text-sm">Proporsi Sisa Margin 100</h3>
+                                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">
                                         Menambah nilai sebesar persentase dari sisa jarak nilai siswa menuju skor sempurna (100).
-                                    p
-                                div
-                                div class=mt-2.5 pt-2 border-t border-slate-20060 text-[11px] font-medium text-slate-600
-                                    i class=fa-solid fa-shield-halved mr-1i Anti-Overflow (Tidak lewat 100)
-                                div
-                            div
+                                    </p>
+                                </div>
+                                <div class="mt-2.5 pt-2 border-t border-slate-200/60 text-[11px] font-medium text-slate-600">
+                                    <i class="fa-solid fa-shield-halved mr-1"></i> Anti-Overflow (Tidak lewat 100)
+                                </div>
+                            </div>
 
-                            !-- Mode 3 Card --
-                            div id=modeCard3 onclick=selectMode('direct')
-                                class=cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hoverborder-emerald-400 flex flex-col justify-between
-                                div
-                                    div class=flex items-center justify-between gap-2 mb-1.5
-                                        span class=text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700MODE 3 • LANGSUNGspan
-                                        i id=modeCheck3 class=fa-regular fa-circle text-slate-400 text-basei
-                                    div
-                                    h3 class=font-bold text-slate-800 text-smPersentase & Poin Seimbangh3
-                                    p class=text-xs text-slate-600 mt-1 leading-relaxed
+                            <!-- Mode 3 Card -->
+                            <div id="modeCard3" onclick="selectMode('direct')"
+                                class="cursor-pointer rounded-xl border-2 border-slate-200 p-3.5 transition-all hover:border-emerald-400 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700">MODE 3 • LANGSUNG</span>
+                                        <i id="modeCheck3" class="fa-regular fa-circle text-slate-400 text-base"></i>
+                                    </div>
+                                    <h3 class="font-bold text-slate-800 text-sm">Persentase & Poin Seimbang</h3>
+                                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">
                                         Kenaikan persentase langsung dari nilai asli + bonus poin merata dengan batas atas (Cap Maksimal).
-                                    p
-                                div
-                                div class=mt-2.5 pt-2 border-t border-slate-20060 text-[11px] font-medium text-slate-600
-                                    i class=fa-solid fa-bolt mr-1i Fleksibel dengan Cap Maksimal
-                                div
-                            div
-                        div
-                    div
+                                    </p>
+                                </div>
+                                <div class="mt-2.5 pt-2 border-t border-slate-200/60 text-[11px] font-medium text-slate-600">
+                                    <i class="fa-solid fa-bolt mr-1"></i> Fleksibel dengan Cap Maksimal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    !-- Dynamic Parameter Controls per Mode --
-                    div class=bg-emerald-5050 border border-emerald-20080 rounded-xl p-4
+                    <!-- Dynamic Parameter Controls per Mode -->
+                    <div class="bg-emerald-50/50 border border-emerald-200/80 rounded-xl p-4">
                         
-                        !-- PARAMETER MODE 1 INTERPOLASI RENTANG ADIL --
-                        div id=paramsInterpolation class=space-y-4
-                            div class=flex items-center justify-between flex-wrap gap-2
-                                span class=text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5
-                                    i class=fa-solid fa-ruler-horizontali Parameter Mode 1 Target Rentang Nilai Baru
-                                span
-                                button onclick=syncMinTargetWithKKM() class=text-xs font-semibold text-emerald-700 hovertext-emerald-900 underline
+                        <!-- PARAMETER MODE 1: INTERPOLASI RENTANG ADIL -->
+                        <div id="paramsInterpolation" class="space-y-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-ruler-horizontal"></i> Parameter Mode 1: Target Rentang Nilai Baru
+                                </span>
+                                <button onclick="syncMinTargetWithKKM()" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
                                     Samakan Target Terendah dengan KKM
-                                button
-                            div
+                                </button>
+                            </div>
 
-                            div class=grid grid-cols-1 smgrid-cols-2 gap-4
-                                div
-                                    label for=targetMinInput class=block text-xs font-semibold text-slate-700 mb-1
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="targetMinInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                         Target Nilai Terendah Baru (Min_Target)
-                                    label
-                                    div class=flex items-center gap-2
-                                        input type=range id=targetMinSlider min=50 max=95 step=1 value=75
-                                            oninput=syncInput('targetMinInput', this.value) class=flex-1
-                                        input type=number id=targetMinInput min=0 max=100 step=0.5 value=75
-                                            oninput=syncInput('targetMinSlider', this.value)
-                                            class=w-20 px-2.5 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focusoutline-none focusring-2 focusring-emerald-500
-                                    div
-                                    p class=text-[11px] text-slate-500 mt-1Siswa nilai terendah akan diangkat ke angka inip
-                                div
+                                    </label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" id="targetMinSlider" min="50" max="95" step="1" value="75"
+                                            oninput="syncInput('targetMinInput', this.value)" class="flex-1">
+                                        <input type="number" id="targetMinInput" min="0" max="100" step="0.5" value="75"
+                                            oninput="syncInput('targetMinSlider', this.value)"
+                                            class="w-20 px-2.5 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1">Siswa nilai terendah akan diangkat ke angka ini</p>
+                                </div>
 
-                                div
-                                    label for=targetMaxInput class=block text-xs font-semibold text-slate-700 mb-1
+                                <div>
+                                    <label for="targetMaxInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                         Target Nilai Tertinggi Baru (Max_Target)
-                                    label
-                                    div class=flex items-center gap-2
-                                        input type=range id=targetMaxSlider min=60 max=100 step=1 value=95
-                                            oninput=syncInput('targetMaxInput', this.value) class=flex-1
-                                        input type=number id=targetMaxInput min=0 max=100 step=0.5 value=95
-                                            oninput=syncInput('targetMaxSlider', this.value)
-                                            class=w-20 px-2.5 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focusoutline-none focusring-2 focusring-emerald-500
-                                    div
-                                    p class=text-[11px] text-slate-500 mt-1Siswa nilai tertinggi akan dipetakan ke angka inip
-                                div
-                            div
+                                    </label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" id="targetMaxSlider" min="60" max="100" step="1" value="95"
+                                            oninput="syncInput('targetMaxInput', this.value)" class="flex-1">
+                                        <input type="number" id="targetMaxInput" min="0" max="100" step="0.5" value="95"
+                                            oninput="syncInput('targetMaxSlider', this.value)"
+                                            class="w-20 px-2.5 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1">Siswa nilai tertinggi akan dipetakan ke angka ini</p>
+                                </div>
+                            </div>
 
-                            div class=bg-white90 rounded-lg p-3 border border-emerald-20070 text-xs text-slate-600 font-mono
-                                span class=font-bold text-emerald-800 font-sansRumus Aktif span
-                                Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli)  (Max_Asli - Min_Asli)) × (Max_Target - Min_Target)
-                            div
-                        div
+                            <div class="bg-white/90 rounded-lg p-3 border border-emerald-200/70 text-xs text-slate-600 font-mono">
+                                <span class="font-bold text-emerald-800 font-sans">Rumus Aktif: </span>
+                                Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli) / (Max_Asli - Min_Asli)) × (Max_Target - Min_Target)
+                            </div>
+                        </div>
 
-                        !-- PARAMETER MODE 2 PROPORSI SISA MARGIN --
-                        div id=paramsMargin class=space-y-4 hidden
-                            div class=flex items-center justify-between
-                                span class=text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5
-                                    i class=fa-solid fa-percenti Parameter Mode 2 Persentase Penambahan dari Sisa Margin (100 - Nilai Asli)
-                                span
-                            div
+                        <!-- PARAMETER MODE 2: PROPORSI SISA MARGIN -->
+                        <div id="paramsMargin" class="space-y-4 hidden">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-percent"></i> Parameter Mode 2: Persentase Penambahan dari Sisa Margin (100 - Nilai Asli)
+                                </span>
+                            </div>
 
-                            div
-                                div class=flex justify-between text-xs font-semibold text-slate-700 mb-1.5
-                                    label for=marginPercentInputPersentase Penambahan Margin (%)label
-                                    span class=text-emerald-700 font-bold id=marginPercentBadge50% dari sisa margin ke 100span
-                                div
-                                div class=flex items-center gap-3
-                                    input type=range id=marginPercentSlider min=1 max=100 step=1 value=50
-                                        oninput=syncInput('marginPercentInput', this.value) class=flex-1
-                                    div class=relative w-24
-                                        input type=number id=marginPercentInput min=1 max=100 step=1 value=50
-                                            oninput=syncInput('marginPercentSlider', this.value)
-                                            class=w-full pl-2.5 pr-6 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focusoutline-none focusring-2 focusring-emerald-500
-                                        span class=absolute right-2.5 top-12 -translate-y-12 text-xs font-bold text-slate-400%span
-                                    div
-                                div
-                                p class=text-[11px] text-slate-500 mt-1.5
-                                    Contoh Jika persentase 50%, siswa bernilai 60 memiliki sisa margin 40 menuju 100, sehingga mendapat tambahan 50% × 40 = +20 poin (menjadi 80).
-                                p
-                            div
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                                    <label for="marginPercentInput">Persentase Penambahan Margin (%)</label>
+                                    <span class="text-emerald-700 font-bold" id="marginPercentBadge">50% dari sisa margin ke 100</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <input type="range" id="marginPercentSlider" min="1" max="100" step="1" value="50"
+                                        oninput="syncInput('marginPercentInput', this.value)" class="flex-1">
+                                    <div class="relative w-24">
+                                        <input type="number" id="marginPercentInput" min="1" max="100" step="1" value="50"
+                                            oninput="syncInput('marginPercentSlider', this.value)"
+                                            class="w-full pl-2.5 pr-6 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                                        <span class="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400">%</span>
+                                    </div>
+                                </div>
+                                <p class="text-[11px] text-slate-500 mt-1.5">
+                                    Contoh: Jika persentase 50%, siswa bernilai 60 memiliki sisa margin 40 menuju 100, sehingga mendapat tambahan 50% × 40 = +20 poin (menjadi 80).
+                                </p>
+                            </div>
 
-                            div class=bg-white90 rounded-lg p-3 border border-emerald-20070 text-xs text-slate-600 font-mono
-                                span class=font-bold text-emerald-800 font-sansRumus Aktif span
-                                Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli) × (Persentase  100))
-                            div
-                        div
+                            <div class="bg-white/90 rounded-lg p-3 border border-emerald-200/70 text-xs text-slate-600 font-mono">
+                                <span class="font-bold text-emerald-800 font-sans">Rumus Aktif: </span>
+                                Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli) × (Persentase / 100))
+                            </div>
+                        </div>
 
-                        !-- PARAMETER MODE 3 PERSENTASE LANGSUNG & POIN SEIMBANG --
-                        div id=paramsDirect class=space-y-4 hidden
-                            div class=flex items-center justify-between
-                                span class=text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5
-                                    i class=fa-solid fa-arrow-up-right-dotsi Parameter Mode 3 Kenaikan Persentase Langsung & Poin Seimbang
-                                span
-                            div
+                        <!-- PARAMETER MODE 3: PERSENTASE LANGSUNG & POIN SEIMBANG -->
+                        <div id="paramsDirect" class="space-y-4 hidden">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-arrow-up-right-dots"></i> Parameter Mode 3: Kenaikan Persentase Langsung & Poin Seimbang
+                                </span>
+                            </div>
 
-                            div class=grid grid-cols-1 smgrid-cols-3 gap-4
-                                div
-                                    label for=directPercentInput class=block text-xs font-semibold text-slate-700 mb-1
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <label for="directPercentInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                         Persentase Tambahan (%)
-                                    label
-                                    div class=flex items-center gap-2
-                                        input type=range id=directPercentSlider min=0 max=100 step=1 value=20
-                                            oninput=syncInput('directPercentInput', this.value) class=flex-1
-                                        input type=number id=directPercentInput min=0 max=200 step=1 value=20
-                                            oninput=syncInput('directPercentSlider', this.value)
-                                            class=w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg
-                                    div
-                                    p class=text-[11px] text-slate-500 mt-1% kenaikan dari Nilai Aslip
-                                div
+                                    </label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" id="directPercentSlider" min="0" max="100" step="1" value="20"
+                                            oninput="syncInput('directPercentInput', this.value)" class="flex-1">
+                                        <input type="number" id="directPercentInput" min="0" max="200" step="1" value="20"
+                                            oninput="syncInput('directPercentSlider', this.value)"
+                                            class="w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg">
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1">% kenaikan dari Nilai Asli</p>
+                                </div>
 
-                                div
-                                    label for=directFlatInput class=block text-xs font-semibold text-slate-700 mb-1
+                                <div>
+                                    <label for="directFlatInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                         Poin Seimbang (+Poin)
-                                    label
-                                    div class=flex items-center gap-2
-                                        input type=range id=directFlatSlider min=0 max=40 step=1 value=5
-                                            oninput=syncInput('directFlatInput', this.value) class=flex-1
-                                        input type=number id=directFlatInput min=0 max=100 step=0.5 value=5
-                                            oninput=syncInput('directFlatSlider', this.value)
-                                            class=w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg
-                                    div
-                                    p class=text-[11px] text-slate-500 mt-1Bonus poin merata sekelasp
-                                div
+                                    </label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" id="directFlatSlider" min="0" max="40" step="1" value="5"
+                                            oninput="syncInput('directFlatInput', this.value)" class="flex-1">
+                                        <input type="number" id="directFlatInput" min="0" max="100" step="0.5" value="5"
+                                            oninput="syncInput('directFlatSlider', this.value)"
+                                            class="w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg">
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1">Bonus poin merata sekelas</p>
+                                </div>
 
-                                div
-                                    label for=directCapInput class=block text-xs font-semibold text-slate-700 mb-1
+                                <div>
+                                    <label for="directCapInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                         Batas Atas (Cap Maks)
-                                    label
-                                    div class=flex items-center gap-2
-                                        input type=range id=directCapSlider min=75 max=100 step=1 value=98
-                                            oninput=syncInput('directCapInput', this.value) class=flex-1
-                                        input type=number id=directCapInput min=50 max=100 step=0.5 value=98
-                                            oninput=syncInput('directCapSlider', this.value)
-                                            class=w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg
-                                    div
-                                    p class=text-[11px] text-slate-500 mt-1Nilai maksimal tidak lewat inip
-                                div
-                            div
+                                    </label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="range" id="directCapSlider" min="75" max="100" step="1" value="98"
+                                            oninput="syncInput('directCapInput', this.value)" class="flex-1">
+                                        <input type="number" id="directCapInput" min="50" max="100" step="0.5" value="98"
+                                            oninput="syncInput('directCapSlider', this.value)"
+                                            class="w-16 px-2 py-1.5 text-center font-bold text-emerald-900 bg-white border border-emerald-300 rounded-lg">
+                                    </div>
+                                    <p class="text-[11px] text-slate-500 mt-1">Nilai maksimal tidak lewat ini</p>
+                                </div>
+                            </div>
 
-                            div class=bg-white90 rounded-lg p-3 border border-emerald-20070 text-xs text-slate-600 font-mono
-                                span class=font-bold text-emerald-800 font-sansRumus Aktif span
-                                Nilai_Baru = Min(Cap_Maks, Nilai_Asli × (1 + Persentase100) + Poin_Seimbang)
-                            div
-                        div
+                            <div class="bg-white/90 rounded-lg p-3 border border-emerald-200/70 text-xs text-slate-600 font-mono">
+                                <span class="font-bold text-emerald-800 font-sans">Rumus Aktif: </span>
+                                Nilai_Baru = Min(Cap_Maks, Nilai_Asli × (1 + Persentase/100) + Poin_Seimbang)
+                            </div>
+                        </div>
 
-                    div
-                div
-            section
+                    </div>
+                </div>
+            </section>
 
-            !-- ================= MODULE B MODUL INPUT DATA SISWA ================= --
-            section class=lgcol-span-5 bg-white rounded-2xl shadow-sm border border-slate-20080 overflow-hidden
-                div class=bg-emerald-5070 border-b border-emerald-100 px-5 py-4 flex items-center justify-between
-                    div class=flex items-center gap-2.5
-                        span class=w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm
-                            i class=fa-solid fa-user-plusi
-                        span
-                        div
-                            h2 class=font-bold text-slate-800 text-baseModul Input Data Siswah2
-                            p class=text-xs text-slate-500Tempel dari ExcelSheets atau input siswa manualp
-                        div
-                    div
+            <!-- ================= MODULE B: MODUL INPUT DATA SISWA ================= -->
+            <section class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+                <div class="bg-emerald-50/70 border-b border-emerald-100 px-5 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </span>
+                        <div>
+                            <h2 class="font-bold text-slate-800 text-base">Modul Input Data Siswa</h2>
+                            <p class="text-xs text-slate-500">Tempel dari Excel/Sheets atau input siswa manual</p>
+                        </div>
+                    </div>
 
-                    !-- Tab Switcher --
-                    div class=inline-flex rounded-lg p-0.5 bg-slate-20080 text-xs font-semibold
-                        button id=tabBtnBulk onclick=switchInputTab('bulk') class=px-2.5 py-1 rounded-md bg-white text-emerald-800 shadow-sm transition
+                    <!-- Tab Switcher -->
+                    <div class="inline-flex rounded-lg p-0.5 bg-slate-200/80 text-xs font-semibold">
+                        <button id="tabBtnBulk" onclick="switchInputTab('bulk')" class="px-2.5 py-1 rounded-md bg-white text-emerald-800 shadow-sm transition">
                             Copy-Paste Excel
-                        button
-                        button id=tabBtnManual onclick=switchInputTab('manual') class=px-2.5 py-1 rounded-md text-slate-600 hovertext-slate-900 transition
+                        </button>
+                        <button id="tabBtnManual" onclick="switchInputTab('manual')" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition">
                             Input Satuan
-                        button
-                    div
-                div
+                        </button>
+                    </div>
+                </div>
 
-                div class=p-5
-                    !-- TAB 1 COPY-PASTE MASSAL --
-                    div id=inputTabBulk class=space-y-3.5
-                        div class=flex items-center justify-between text-xs
-                            span class=font-semibold text-slate-700
-                                i class=fa-solid fa-table text-emerald-600 mr-1i Paste Kolom Nama & Nilai dari Excel  Google Sheets
-                            span
-                            button onclick=fillExamplePasteText() class=text-emerald-600 hovertext-emerald-800 font-semibold underline
+                <div class="p-5">
+                    <!-- TAB 1: COPY-PASTE MASSAL -->
+                    <div id="inputTabBulk" class="space-y-3.5">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-semibold text-slate-700">
+                                <i class="fa-solid fa-table text-emerald-600 mr-1"></i> Paste Kolom Nama & Nilai dari Excel / Google Sheets:
+                            </span>
+                            <button onclick="fillExamplePasteText()" class="text-emerald-600 hover:text-emerald-800 font-semibold underline">
                                 Isi Contoh Format
-                            button
-                        div
+                            </button>
+                        </div>
 
-                        textarea id=bulkPasteTextarea rows=6
-                            placeholder=Contoh format (pisahkan dengan Tab, Koma, atau Titik Koma)&#10;Ahmad Fauzi	54&#10;Bunga Citra	68.5&#10;Cahyo Pratama, 45&#10;Dinda Kirana; 82
-                            class=w-full p-3.5 bg-slate-50 border border-slate-300 rounded-xl text-xs smtext-sm font-mono text-slate-800 focusbg-white focusoutline-none focusring-2 focusring-emerald-500 focusborder-emerald-500 transition resize-ytextarea
+                        <textarea id="bulkPasteTextarea" rows="6"
+                            placeholder="Contoh format (pisahkan dengan Tab, Koma, atau Titik Koma):&#10;Ahmad Fauzi	54&#10;Bunga Citra	68.5&#10;Cahyo Pratama, 45&#10;Dinda Kirana; 82"
+                            class="w-full p-3.5 bg-slate-50 border border-slate-300 rounded-xl text-xs sm:text-sm font-mono text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition resize-y"></textarea>
 
-                        div class=flex flex-wrap items-center justify-between gap-2 pt-1
-                            div class=flex items-center gap-2
-                                button onclick=processBulkPaste('replace')
-                                    class=inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hoverbg-emerald-700 text-white font-semibold text-xs smtext-sm shadow-sm transition activescale-95
-                                    i class=fa-solid fa-file-importi
-                                    spanProses & Ganti Tabelspan
-                                button
-                                button onclick=processBulkPaste('append')
-                                    class=inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-50 hoverbg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs smtext-sm transition activescale-95
-                                    i class=fa-solid fa-plusi
-                                    spanTambahkanspan
-                                button
-                            div
+                        <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                            <div class="flex items-center gap-2">
+                                <button onclick="processBulkPaste('replace')"
+                                    class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition active:scale-95">
+                                    <i class="fa-solid fa-file-import"></i>
+                                    <span>Proses & Ganti Tabel</span>
+                                </button>
+                                <button onclick="processBulkPaste('append')"
+                                    class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs sm:text-sm transition active:scale-95">
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span>Tambahkan</span>
+                                </button>
+                            </div>
 
-                            button onclick=loadSampleData()
-                                class=inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 hoverbg-amber-100 text-amber-800 border border-amber-200 font-semibold text-xs transition
-                                i class=fa-solid fa-users-viewfinderi
-                                spanData Simulasi (18 Siswa)span
-                            button
-                        div
+                            <button onclick="loadSampleData()"
+                                class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-semibold text-xs transition">
+                                <i class="fa-solid fa-users-viewfinder"></i>
+                                <span>Data Simulasi (18 Siswa)</span>
+                            </button>
+                        </div>
 
-                        div class=p-3 rounded-xl bg-slate-50 border border-slate-20080 text-[11px] text-slate-600 flex items-start gap-2
-                            i class=fa-solid fa-lightbulb text-amber-500 mt-0.5 text-smi
-                            div
-                                strongTips Cepatstrong Blok 2 kolom (Nama Siswa & Nilai Asli) di Microsoft Excel atau Google Sheets, tekan kbd class=px-1.5 py-0.5 bg-white border rounded text-slate-700 font-sansCtrl+Ckbd, lalu tempel kbd class=px-1.5 py-0.5 bg-white border rounded text-slate-700 font-sansCtrl+Vkbd pada kotak di atas.
-                            div
-                        div
-                    div
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-[11px] text-slate-600 flex items-start gap-2">
+                            <i class="fa-solid fa-lightbulb text-amber-500 mt-0.5 text-sm"></i>
+                            <div>
+                                <strong>Tips Cepat:</strong> Blok 2 kolom (Nama Siswa & Nilai Asli) di Microsoft Excel atau Google Sheets, tekan <kbd class="px-1.5 py-0.5 bg-white border rounded text-slate-700 font-sans">Ctrl+C</kbd>, lalu tempel <kbd class="px-1.5 py-0.5 bg-white border rounded text-slate-700 font-sans">Ctrl+V</kbd> pada kotak di atas.
+                            </div>
+                        </div>
+                    </div>
 
-                    !-- TAB 2 INPUT MANUAL SATUAN --
-                    div id=inputTabManual class=space-y-4 hidden
-                        form id=manualAddForm onsubmit=handleManualAdd(event) class=space-y-3.5
-                            div
-                                label for=manualNameInput class=block text-xs font-semibold text-slate-700 mb-1
+                    <!-- TAB 2: INPUT MANUAL SATUAN -->
+                    <div id="inputTabManual" class="space-y-4 hidden">
+                        <form id="manualAddForm" onsubmit="handleManualAdd(event)" class="space-y-3.5">
+                            <div>
+                                <label for="manualNameInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                     Nama Lengkap Siswa
-                                label
-                                input type=text id=manualNameInput required placeholder=Masukkan nama siswa...
-                                    class=w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-800 focusbg-white focusoutline-none focusring-2 focusring-emerald-500
-                            div
+                                </label>
+                                <input type="text" id="manualNameInput" required placeholder="Masukkan nama siswa..."
+                                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
 
-                            div
-                                label for=manualScoreInput class=block text-xs font-semibold text-slate-700 mb-1
+                            <div>
+                                <label for="manualScoreInput" class="block text-xs font-semibold text-slate-700 mb-1">
                                     Nilai Asli (Mentah) [0 - 100]
-                                label
-                                input type=number id=manualScoreInput required min=0 max=100 step=0.01 placeholder=Contoh 58.5
-                                    class=w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-800 focusbg-white focusoutline-none focusring-2 focusring-emerald-500
-                            div
+                                </label>
+                                <input type="number" id="manualScoreInput" required min="0" max="100" step="0.01" placeholder="Contoh: 58.5"
+                                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            </div>
 
-                            div class=pt-1 flex items-center gap-2
-                                button type=submit
-                                    class=w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hoverbg-emerald-700 text-white font-semibold text-sm shadow-sm transition activescale-95
-                                    i class=fa-solid fa-user-checki
-                                    spanTambah Siswa ke Tabelspan
-                                button
-                            div
-                        form
+                            <div class="pt-1 flex items-center gap-2">
+                                <button type="submit"
+                                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-sm transition active:scale-95">
+                                    <i class="fa-solid fa-user-check"></i>
+                                    <span>Tambah Siswa ke Tabel</span>
+                                </button>
+                            </div>
+                        </form>
 
-                        div class=pt-3 border-t border-slate-200 flex items-center justify-between
-                            span class=text-xs text-slate-500Ingin mencoba fitur dengan cepatspan
-                            button onclick=loadSampleData() class=text-xs font-semibold text-emerald-700 hovertext-emerald-900 underline
-                                i class=fa-solid fa-wand-magic-sparkles mr-1i Muat 18 Siswa Simulasi
-                            button
-                        div
-                    div
-                div
-            section
+                        <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs text-slate-500">Ingin mencoba fitur dengan cepat?</span>
+                            <button onclick="loadSampleData()" class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Muat 18 Siswa Simulasi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        div
+        </div>
 
-        !-- ================= MODULE C KARTU STATISTIK & ANALITIK KELAS ================= --
-        section class=space-y-4
-            div class=flex flex-col smflex-row smitems-center smjustify-between gap-2
-                div class=flex items-center gap-2.5
-                    span class=w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm
-                        i class=fa-solid fa-chart-piei
-                    span
-                    div
-                        h2 class=font-bold text-slate-800 text-base smtext-lgDashboard Ringkasan Statistik & Analitik Kelash2
-                        p class=text-xs text-slate-500Perbandingan metrik nilai kelas Sebelum vs Sesudah Katrol secara Real-Timep
-                    div
-                div
+        <!-- ================= MODULE C: KARTU STATISTIK & ANALITIK KELAS ================= -->
+        <section class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </span>
+                    <div>
+                        <h2 class="font-bold text-slate-800 text-base sm:text-lg">Dashboard Ringkasan Statistik & Analitik Kelas</h2>
+                        <p class="text-xs text-slate-500">Perbandingan metrik nilai kelas Sebelum vs Sesudah Katrol secara Real-Time</p>
+                    </div>
+                </div>
 
-                !-- Toggle Visual Distribution Curve --
-                button onclick=toggleChartSection() id=toggleChartBtn
-                    class=self-start smself-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hoverbg-emerald-50 text-emerald-700 border border-slate-200 font-semibold text-xs shadow-sm transition
-                    i class=fa-solid fa-chart-areai
-                    span id=toggleChartTextTampilkan Grafik Distribusi Nilaispan
-                button
-            div
+                <!-- Toggle Visual Distribution Curve -->
+                <button onclick="toggleChartSection()" id="toggleChartBtn"
+                    class="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 font-semibold text-xs shadow-sm transition">
+                    <i class="fa-solid fa-chart-area"></i>
+                    <span id="toggleChartText">Tampilkan Grafik Distribusi Nilai</span>
+                </button>
+            </div>
 
-            !-- 4 Main Stat Cards --
-            div class=grid grid-cols-1 smgrid-cols-2 lggrid-cols-4 gap-4
+            <!-- 4 Main Stat Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 
-                !-- Card 1 Nilai Terendah (Min) --
-                div class=bg-white rounded-2xl p-4 shadow-sm border border-slate-20080 flex flex-col justify-between
-                    div class=flex items-center justify-between mb-3
-                        span class=text-xs font-bold uppercase tracking-wider text-slate-500Nilai Terendah (Min)span
-                        span class=w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm
-                            i class=fa-solid fa-arrow-trend-downi
-                        span
-                    div
-                    div class=grid grid-cols-2 gap-2 items-end
-                        div class=p-2.5 rounded-xl bg-slate-50 border border-slate-100
-                            span class=block text-[11px] font-medium text-slate-500Sebelum (Asli)span
-                            span id=statMinOld class=text-xl font-extrabold text-slate-7000span
-                        div
-                        div class=p-2.5 rounded-xl bg-emerald-5080 border border-emerald-20080
-                            span class=block text-[11px] font-semibold text-emerald-800Sesudah Katrolspan
-                            span id=statMinNew class=text-xl font-extrabold text-emerald-7000span
-                        div
-                    div
-                    div class=mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs
-                        span class=text-slate-500Selisih Kenaikan Dasarspan
-                        span id=statMinDiff class=font-bold text-emerald-600+0 Poinspan
-                    div
-                div
+                <!-- Card 1: Nilai Terendah (Min) -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Nilai Terendah (Min)</span>
+                        <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-arrow-trend-down"></i>
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 items-end">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="block text-[11px] font-medium text-slate-500">Sebelum (Asli)</span>
+                            <span id="statMinOld" class="text-xl font-extrabold text-slate-700">0</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80">
+                            <span class="block text-[11px] font-semibold text-emerald-800">Sesudah Katrol</span>
+                            <span id="statMinNew" class="text-xl font-extrabold text-emerald-700">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span class="text-slate-500">Selisih Kenaikan Dasar:</span>
+                        <span id="statMinDiff" class="font-bold text-emerald-600">+0 Poin</span>
+                    </div>
+                </div>
 
-                !-- Card 2 Nilai Tertinggi (Max) --
-                div class=bg-white rounded-2xl p-4 shadow-sm border border-slate-20080 flex flex-col justify-between
-                    div class=flex items-center justify-between mb-3
-                        span class=text-xs font-bold uppercase tracking-wider text-slate-500Nilai Tertinggi (Max)span
-                        span class=w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm
-                            i class=fa-solid fa-trophyi
-                        span
-                    div
-                    div class=grid grid-cols-2 gap-2 items-end
-                        div class=p-2.5 rounded-xl bg-slate-50 border border-slate-100
-                            span class=block text-[11px] font-medium text-slate-500Sebelum (Asli)span
-                            span id=statMaxOld class=text-xl font-extrabold text-slate-7000span
-                        div
-                        div class=p-2.5 rounded-xl bg-emerald-5080 border border-emerald-20080
-                            span class=block text-[11px] font-semibold text-emerald-800Sesudah Katrolspan
-                            span id=statMaxNew class=text-xl font-extrabold text-emerald-7000span
-                        div
-                    div
-                    div class=mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs
-                        span class=text-slate-500Selisih Nilai Puncakspan
-                        span id=statMaxDiff class=font-bold text-emerald-600+0 Poinspan
-                    div
-                div
+                <!-- Card 2: Nilai Tertinggi (Max) -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Nilai Tertinggi (Max)</span>
+                        <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-trophy"></i>
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 items-end">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="block text-[11px] font-medium text-slate-500">Sebelum (Asli)</span>
+                            <span id="statMaxOld" class="text-xl font-extrabold text-slate-700">0</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80">
+                            <span class="block text-[11px] font-semibold text-emerald-800">Sesudah Katrol</span>
+                            <span id="statMaxNew" class="text-xl font-extrabold text-emerald-700">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span class="text-slate-500">Selisih Nilai Puncak:</span>
+                        <span id="statMaxDiff" class="font-bold text-emerald-600">+0 Poin</span>
+                    </div>
+                </div>
 
-                !-- Card 3 Rata-rata Kelas (Mean) --
-                div class=bg-white rounded-2xl p-4 shadow-sm border border-slate-20080 flex flex-col justify-between
-                    div class=flex items-center justify-between mb-3
-                        span class=text-xs font-bold uppercase tracking-wider text-slate-500Rata-Rata Kelas (Mean)span
-                        span class=w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm
-                            i class=fa-solid fa-chart-linei
-                        span
-                    div
-                    div class=grid grid-cols-2 gap-2 items-end
-                        div class=p-2.5 rounded-xl bg-slate-50 border border-slate-100
-                            span class=block text-[11px] font-medium text-slate-500Sebelum (Asli)span
-                            span id=statMeanOld class=text-xl font-extrabold text-slate-7000span
-                        div
-                        div class=p-2.5 rounded-xl bg-emerald-5080 border border-emerald-20080
-                            span class=block text-[11px] font-semibold text-emerald-800Sesudah Katrolspan
-                            span id=statMeanNew class=text-xl font-extrabold text-emerald-7000span
-                        div
-                    div
-                    div class=mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs
-                        span class=text-slate-500Rata-rata Penambahanspan
-                        span id=statMeanDiff class=font-bold text-emerald-600+0 Poinspan
-                    div
-                div
+                <!-- Card 3: Rata-rata Kelas (Mean) -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Rata-Rata Kelas (Mean)</span>
+                        <span class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 items-end">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                            <span class="block text-[11px] font-medium text-slate-500">Sebelum (Asli)</span>
+                            <span id="statMeanOld" class="text-xl font-extrabold text-slate-700">0</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80">
+                            <span class="block text-[11px] font-semibold text-emerald-800">Sesudah Katrol</span>
+                            <span id="statMeanNew" class="text-xl font-extrabold text-emerald-700">0</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span class="text-slate-500">Rata-rata Penambahan:</span>
+                        <span id="statMeanDiff" class="font-bold text-emerald-600">+0 Poin</span>
+                    </div>
+                </div>
 
-                !-- Card 4 Tingkat Ketuntasan Kelas (Lulus KKM) --
-                div class=bg-white rounded-2xl p-4 shadow-sm border border-slate-20080 flex flex-col justify-between
-                    div class=flex items-center justify-between mb-2
-                        span class=text-xs font-bold uppercase tracking-wider text-slate-500Ketuntasan Kelas (≥ KKM)span
-                        span id=statKKMBadge class=text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800
-                            KKM 75
-                        span
-                    div
-                    div class=grid grid-cols-2 gap-2 items-end
-                        div class=p-2.5 rounded-xl bg-rose-5060 border border-rose-100
-                            span class=block text-[11px] font-medium text-rose-700Tuntas Awalspan
-                            div class=flex items-baseline gap-1
-                                span id=statPassOldCount class=text-lg font-extrabold text-rose-70000span
-                                span id=statPassOldPct class=text-xs font-bold text-rose-600(0%)span
-                            div
-                        div
-                        div class=p-2.5 rounded-xl bg-emerald-5080 border border-emerald-20080
-                            span class=block text-[11px] font-semibold text-emerald-800Tuntas Akhirspan
-                            div class=flex items-baseline gap-1
-                                span id=statPassNewCount class=text-lg font-extrabold text-emerald-70000span
-                                span id=statPassNewPct class=text-xs font-bold text-emerald-600(0%)span
-                            div
-                        div
-                    div
-                    !-- Progress bar comparison --
-                    div class=mt-3 space-y-1
-                        div class=w-full h-2 bg-slate-100 rounded-full overflow-hidden flex
-                            div id=passProgressBar class=bg-emerald-500 h-full transition-all duration-300 style=width 0%div
-                        div
-                        div class=flex justify-between text-[11px] text-slate-500
-                            spanIntegritas Peringkatspan
-                            span class=font-bold text-emerald-700i class=fa-solid fa-check-double mr-0.5i 100% Terjagaspan
-                        div
-                    div
-                div
+                <!-- Card 4: Tingkat Ketuntasan Kelas (Lulus KKM) -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200/80 flex flex-col justify-between">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Ketuntasan Kelas (≥ KKM)</span>
+                        <span id="statKKMBadge" class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
+                            KKM: 75
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 items-end">
+                        <div class="p-2.5 rounded-xl bg-rose-50/60 border border-rose-100">
+                            <span class="block text-[11px] font-medium text-rose-700">Tuntas Awal</span>
+                            <div class="flex items-baseline gap-1">
+                                <span id="statPassOldCount" class="text-lg font-extrabold text-rose-700">0/0</span>
+                                <span id="statPassOldPct" class="text-xs font-bold text-rose-600">(0%)</span>
+                            </div>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/80">
+                            <span class="block text-[11px] font-semibold text-emerald-800">Tuntas Akhir</span>
+                            <div class="flex items-baseline gap-1">
+                                <span id="statPassNewCount" class="text-lg font-extrabold text-emerald-700">0/0</span>
+                                <span id="statPassNewPct" class="text-xs font-bold text-emerald-600">(0%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Progress bar comparison -->
+                    <div class="mt-3 space-y-1">
+                        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden flex">
+                            <div id="passProgressBar" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <div class="flex justify-between text-[11px] text-slate-500">
+                            <span>Integritas Peringkat:</span>
+                            <span class="font-bold text-emerald-700"><i class="fa-solid fa-check-double mr-0.5"></i> 100% Terjaga</span>
+                        </div>
+                    </div>
+                </div>
 
-            div
+            </div>
 
-            !-- Collapsible Visual Chart Panel --
-            div id=chartContainerPanel class=hidden bg-white rounded-2xl p-5 shadow-sm border border-slate-20080
-                div class=flex flex-col smflex-row smitems-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100
-                    div
-                        h3 class=font-bold text-slate-800 text-smVisualisasi Kurva Proporsional Nilai Siswa (Diurutkan dari Nilai Terendah ke Tertinggi)h3
-                        p class=text-xs text-slate-500Garis hijau menunjukkan hasil katrol yang naik secara mulus dan proporsional tanpa saling mendahului peringkat siswa lain.p
-                    div
-                    div class=flex items-center gap-4 text-xs font-semibold
-                        span class=flex items-center gap-1.5 text-slate-500
-                            span class=w-3 h-3 rounded-full bg-slate-400 inline-blockspan Nilai Asli
-                        span
-                        span class=flex items-center gap-1.5 text-emerald-700
-                            span class=w-3 h-3 rounded-full bg-emerald-500 inline-blockspan Nilai Hasil Katrol
-                        span
-                        span class=flex items-center gap-1.5 text-rose-600
-                            span class=w-4 border-t-2 border-dashed border-rose-500 inline-blockspan Batas KKM
-                        span
-                    div
-                div
-                div class=w-full h-64 relative
-                    canvas id=distributionCanvascanvas
-                div
-            div
-        section
+            <!-- Collapsible Visual Chart Panel -->
+            <div id="chartContainerPanel" class="hidden bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Visualisasi Kurva Proporsional Nilai Siswa (Diurutkan dari Nilai Terendah ke Tertinggi)</h3>
+                        <p class="text-xs text-slate-500">Garis hijau menunjukkan hasil katrol yang naik secara mulus dan proporsional tanpa saling mendahului peringkat siswa lain.</p>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs font-semibold">
+                        <span class="flex items-center gap-1.5 text-slate-500">
+                            <span class="w-3 h-3 rounded-full bg-slate-400 inline-block"></span> Nilai Asli
+                        </span>
+                        <span class="flex items-center gap-1.5 text-emerald-700">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Nilai Hasil Katrol
+                        </span>
+                        <span class="flex items-center gap-1.5 text-rose-600">
+                            <span class="w-4 border-t-2 border-dashed border-rose-500 inline-block"></span> Batas KKM
+                        </span>
+                    </div>
+                </div>
+                <div class="w-full h-64 relative">
+                    <canvas id="distributionCanvas"></canvas>
+                </div>
+            </div>
+        </section>
 
-        !-- ================= MODULE D & E TABEL PERBANDINGAN HASIL & EKSPOR ================= --
-        section class=bg-white rounded-2xl shadow-sm border border-slate-20080 overflow-hidden
+        <!-- ================= MODULE D & E: TABEL PERBANDINGAN HASIL & EKSPOR ================= -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
             
-            !-- Table Top Bar Filters & Export Buttons (Module E) --
-            div class=p-5 border-b border-slate-20080 bg-slate-5050 space-y-4
-                div class=flex flex-col lgflex-row lgitems-center lgjustify-between gap-4
-                    div
-                        div class=flex items-center gap-2
-                            h2 class=font-bold text-slate-800 text-base smtext-lgTabel Perbandingan Hasil Katrol & Keadilan Proporsih2
-                            span id=studentCountBadge class=text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800
+            <!-- Table Top Bar: Filters & Export Buttons (Module E) -->
+            <div class="p-5 border-b border-slate-200/80 bg-slate-50/50 space-y-4">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="font-bold text-slate-800 text-base sm:text-lg">Tabel Perbandingan Hasil Katrol & Keadilan Proporsi</h2>
+                            <span id="studentCountBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                                 0 Siswa
-                            span
-                        div
-                        p class=text-xs text-slate-500 mt-0.5
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-0.5">
                             Klik langsung pada Nama atau Nilai Asli di dalam tabel jika ingin mengubah data secara cepat.
-                        p
-                    div
+                        </p>
+                    </div>
 
-                    !-- MODULE E FITUR EKSPOR & SALIN HASIL --
-                    div class=flex flex-wrap items-center gap-2
-                        button onclick=copyTableForExcel()
-                            class=inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 hoverbg-emerald-700 text-white font-semibold text-xs smtext-sm shadow-sm transition activescale-95
-                            i class=fa-regular fa-copyi
-                            spanSalin ke Clipboard (Copy Excel)span
-                        button
+                    <!-- MODULE E: FITUR EKSPOR & SALIN HASIL -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="copyTableForExcel()"
+                            class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition active:scale-95">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Salin ke Clipboard (Copy Excel)</span>
+                        </button>
 
-                        button onclick=exportToExcel()
-                            class=inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-teal-600 hoverbg-teal-700 text-white font-semibold text-xs smtext-sm shadow-sm transition activescale-95
-                            i class=fa-solid fa-file-exceli
-                            spanUnduh Excel (.xlsx)span
-                        button
+                        <button onclick="exportToExcel()"
+                            class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs sm:text-sm shadow-sm transition active:scale-95">
+                            <i class="fa-solid fa-file-excel"></i>
+                            <span>Unduh Excel (.xlsx)</span>
+                        </button>
 
-                        button onclick=exportToCSV()
-                            class=inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hoverbg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs smtext-sm transition activescale-95
-                            i class=fa-solid fa-file-csv text-emerald-600i
-                            spanUnduh CSVspan
-                        button
+                        <button onclick="exportToCSV()"
+                            class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 font-semibold text-xs sm:text-sm transition active:scale-95">
+                            <i class="fa-solid fa-file-csv text-emerald-600"></i>
+                            <span>Unduh CSV</span>
+                        </button>
 
-                        button onclick=openResetModal()
-                            class=inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-rose-50 hoverbg-rose-100 text-rose-700 border border-rose-200 font-semibold text-xs smtext-sm transition activescale-95
-                            title=Hapus seluruh data siswa
-                            i class=fa-solid fa-trash-cani
-                            spanReset Dataspan
-                        button
-                    div
-                div
+                        <button onclick="openResetModal()"
+                            class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-semibold text-xs sm:text-sm transition active:scale-95"
+                            title="Hapus seluruh data siswa">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Reset Data</span>
+                        </button>
+                    </div>
+                </div>
 
-                !-- Search, Filter & Sort Controls --
-                div class=grid grid-cols-1 smgrid-cols-3 gap-3 pt-2
-                    !-- Search Box --
-                    div class=relative
-                        i class=fa-solid fa-magnifying-glass absolute left-3.5 top-12 -translate-y-12 text-slate-400 text-xsi
-                        input type=text id=searchStudentInput oninput=renderTable() placeholder=Cari nama siswa...
-                            class=w-full pl-9 pr-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs smtext-sm text-slate-800 focusoutline-none focusring-2 focusring-emerald-500
-                    div
+                <!-- Search, Filter & Sort Controls -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                    <!-- Search Box -->
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="searchStudentInput" oninput="renderTable()" placeholder="Cari nama siswa..."
+                            class="w-full pl-9 pr-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
 
-                    !-- Filter Ketuntasan Awal --
-                    div
-                        select id=filterStatusSelect onchange=renderTable()
-                            class=w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs smtext-sm text-slate-700 font-medium focusoutline-none focusring-2 focusring-emerald-500
-                            option value=allSemua Status Siswaoption
-                            option value=remedial_oldSiswa Awal Di Bawah KKM (Remedial)option
-                            option value=pass_oldSiswa Awal Sudah Tuntas (≥ KKM)option
-                            option value=remedial_newMasih Di Bawah KKM Sesudah Katroloption
-                        select
-                    div
+                    <!-- Filter Ketuntasan Awal -->
+                    <div>
+                        <select id="filterStatusSelect" onchange="renderTable()"
+                            class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="all">Semua Status Siswa</option>
+                            <option value="remedial_old">Siswa Awal Di Bawah KKM (Remedial)</option>
+                            <option value="pass_old">Siswa Awal Sudah Tuntas (≥ KKM)</option>
+                            <option value="remedial_new">Masih Di Bawah KKM Sesudah Katrol</option>
+                        </select>
+                    </div>
 
-                    !-- Sort Order --
-                    div
-                        select id=sortOrderSelect onchange=renderTable()
-                            class=w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs smtext-sm text-slate-700 font-medium focusoutline-none focusring-2 focusring-emerald-500
-                            option value=no_ascUrutan Input  No. Absen (Awal)option
-                            option value=rank_ascPeringkat Kelas (Rank 1 Teratas)option
-                            option value=rank_descNilai Terendah ke Tertinggioption
-                            option value=name_ascNama Siswa (A - Z)option
-                            option value=gain_descPenambahan Poin Terbesaroption
-                        select
-                    div
-                div
-            div
+                    <!-- Sort Order -->
+                    <div>
+                        <select id="sortOrderSelect" onchange="renderTable()"
+                            class="w-full px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs sm:text-sm text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <option value="no_asc">Urutan Input / No. Absen (Awal)</option>
+                            <option value="rank_asc">Peringkat Kelas (Rank 1 Teratas)</option>
+                            <option value="rank_desc">Nilai Terendah ke Tertinggi</option>
+                            <option value="name_asc">Nama Siswa (A - Z)</option>
+                            <option value="gain_desc">Penambahan Poin Terbesar</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-            !-- Responsive Table Container --
-            div class=overflow-x-auto
-                table class=w-full text-left border-collapse
-                    thead
-                        tr class=bg-slate-10090 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-600
-                            th class=py-3.5 px-4 w-14 text-centerNoth
-                            th class=py-3.5 px-4 min-w-[200px]Nama Siswath
-                            th class=py-3.5 px-4 text-centerNilai Asli (Awal)th
-                            th class=py-3.5 px-4 text-center bg-emerald-5070 text-emerald-900 border-x border-emerald-100Nilai Hasil Katrolth
-                            th class=py-3.5 px-4 text-centerSelisih (+Poin)th
-                            th class=py-3.5 px-4 text-centerPersentase Kenaikan (%)th
-                            th class=py-3.5 px-4 text-centerPeringkat (Rank)th
-                            th class=py-3.5 px-4 text-center w-20Aksith
-                        tr
-                    thead
-                    tbody id=studentTableBody class=divide-y divide-slate-20070 text-sm
-                        !-- Populated dynamically via JS --
-                    tbody
-                table
-            div
+            <!-- Responsive Table Container -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100/90 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                            <th class="py-3.5 px-4 w-14 text-center">No</th>
+                            <th class="py-3.5 px-4 min-w-[200px]">Nama Siswa</th>
+                            <th class="py-3.5 px-4 text-center">Nilai Asli (Awal)</th>
+                            <th class="py-3.5 px-4 text-center bg-emerald-50/70 text-emerald-900 border-x border-emerald-100">Nilai Hasil Katrol</th>
+                            <th class="py-3.5 px-4 text-center">Selisih (+Poin)</th>
+                            <th class="py-3.5 px-4 text-center">Persentase Kenaikan (%)</th>
+                            <th class="py-3.5 px-4 text-center">Peringkat (Rank)</th>
+                            <th class="py-3.5 px-4 text-center w-20">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody" class="divide-y divide-slate-200/70 text-sm">
+                        <!-- Populated dynamically via JS -->
+                    </tbody>
+                </table>
+            </div>
 
-            !-- Empty State --
-            div id=emptyStateContainer class=hidden py-14 px-4 text-center
-                div class=w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner
-                    i class=fa-solid fa-clipboard-listi
-                div
-                h3 class=font-bold text-slate-800 text-baseBelum Ada Data Nilai Siswah3
-                p class=text-xs smtext-sm text-slate-500 max-w-md mx-auto mt-1 mb-5
-                    Silakan paste daftar nilai siswa dari Excel pada panel di atas, atau klik tombol di bawah untuk memuat simulasi nilai satu kelas.
-                p
-                button onclick=loadSampleData()
-                    class=inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hoverbg-emerald-700 text-white font-semibold text-sm shadow-sm transition
-                    i class=fa-solid fa-wand-magic-sparklesi
-                    spanMuat Data Simulasi Kelas (18 Siswa)span
-                button
-            div
+            <!-- Empty State -->
+            <div id="emptyStateContainer" class="hidden py-14 px-4 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3 text-2xl shadow-inner">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+                <h3 class="font-bold text-slate-800 text-base">Belum Ada Data Nilai Siswa</h3>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto mt-1 mb-5">
+                    Silakan *paste* daftar nilai siswa dari Excel pada panel di atas, atau klik tombol di bawah untuk memuat simulasi nilai satu kelas.
+                </p>
+                <button onclick="loadSampleData()"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-sm transition">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Muat Data Simulasi Kelas (18 Siswa)</span>
+                </button>
+            </div>
 
-            !-- Table Footer Summary --
-            div class=bg-slate-50 px-5 py-3.5 border-t border-slate-20080 flex flex-col smflex-row smitems-center smjustify-between gap-2 text-xs text-slate-600
-                div class=flex items-center gap-4 flex-wrap
-                    span class=flex items-center gap-1.5
-                        span class=w-2.5 h-2.5 rounded-full bg-emerald-500span
-                        strongTuntas (≥ KKM)strong
-                    span
-                    span class=flex items-center gap-1.5
-                        span class=w-2.5 h-2.5 rounded-full bg-rose-500span
-                        strongBelum Tuntas (&lt; KKM)strong
-                    span
-                div
-                div id=formulaSummaryFooter class=font-medium text-slate-500
-                    Metode aktif Interpolasi Rentang Adil
-                div
-            div
-        section
+            <!-- Table Footer Summary -->
+            <div class="bg-slate-50 px-5 py-3.5 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-slate-600">
+                <div class="flex items-center gap-4 flex-wrap">
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                        <strong>Tuntas (≥ KKM)</strong>
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                        <strong>Belum Tuntas (&lt; KKM)</strong>
+                    </span>
+                </div>
+                <div id="formulaSummaryFooter" class="font-medium text-slate-500">
+                    Metode aktif: Interpolasi Rentang Adil
+                </div>
+            </div>
+        </section>
 
-    main
+    </main>
 
-    !-- ================= FOOTER ================= --
-    footer class=bg-white border-t border-slate-20080 mt-10
-        div class=max-w-7xl mx-auto px-4 smpx-6 lgpx-8 py-5 flex flex-col smflex-row items-center justify-between gap-3 text-xs text-slate-500
-            div class=flex items-center gap-2
-                span class=w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center font-bold
-                    i class=fa-solid fa-graduation-cap text-[11px]i
-                span
-                spanstrongRuruAlbernEdu SmartGradestrong — Alat Bantu Pengolahan Nilai Evaluasi Pendidikan Adil & Transparanspan
-            div
-            div
-                Data tersimpan secara lokal di perangkat Anda (code class=text-emerald-700 font-semiboldlocalStoragecode) • Privasi Terjamin 100%
-            div
-        div
-    footer
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-white border-t border-slate-200/80 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-emerald-600 text-white flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+                </span>
+                <span><strong>RuruAlbernEdu SmartGrade</strong> — Alat Bantu Pengolahan Nilai Evaluasi Pendidikan Adil & Transparan</span>
+            </div>
+            <div>
+                Data tersimpan secara lokal di perangkat Anda (<code class="text-emerald-700 font-semibold">localStorage</code>) • Privasi Terjamin 100%
+            </div>
+        </div>
+    </footer>
 
-    !-- ================= MODAL KONFIRMASI RESET DATA ================= --
-    div id=resetModal class=fixed inset-0 z-50 hidden items-center justify-center bg-slate-90050 backdrop-blur-xs p-4
-        div class=bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-fade-in
-            div class=w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-4
-                i class=fa-solid fa-triangle-exclamationi
-            div
-            h3 class=text-lg font-bold text-slate-800Hapus Seluruh Data Siswah3
-            p class=text-sm text-slate-600 mt-1.5 leading-relaxed
-                Tindakan ini akan mengosongkan daftar nilai siswa pada tabel serta menghapus data yang tersimpan di memori browser (code class=text-xs bg-slate-100 px-1 py-0.5 roundedlocalStoragecode).
-            p
-            div class=mt-6 flex items-center justify-end gap-2.5
-                button onclick=closeResetModal()
-                    class=px-4 py-2 rounded-xl bg-slate-100 hoverbg-slate-200 text-slate-700 font-semibold text-sm transition
+    <!-- ================= MODAL: KONFIRMASI RESET DATA ================= -->
+    <div id="resetModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 animate-fade-in">
+            <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-4">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Hapus Seluruh Data Siswa?</h3>
+            <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+                Tindakan ini akan mengosongkan daftar nilai siswa pada tabel serta menghapus data yang tersimpan di memori browser (<code class="text-xs bg-slate-100 px-1 py-0.5 rounded">localStorage</code>).
+            </p>
+            <div class="mt-6 flex items-center justify-end gap-2.5">
+                <button onclick="closeResetModal()"
+                    class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
                     Batal
-                button
-                button onclick=confirmResetData()
-                    class=px-4 py-2 rounded-xl bg-rose-600 hoverbg-rose-700 text-white font-semibold text-sm shadow-sm transition
+                </button>
+                <button onclick="confirmResetData()"
+                    class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm shadow-sm transition">
                     Ya, Hapus Semua
-                button
-            div
-        div
-    div
+                </button>
+            </div>
+        </div>
+    </div>
 
-    !-- ================= MODAL PANDUAN RUMUS & KEADILAN KATROL ================= --
-    div id=formulaGuideModal class=fixed inset-0 z-50 hidden items-center justify-center bg-slate-90050 backdrop-blur-xs p-4
-        div class=bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-xl border border-slate-200 overflow-hidden
-            div class=bg-emerald-700 text-white px-6 py-4 flex items-center justify-between
-                div class=flex items-center gap-2.5
-                    i class=fa-solid fa-book-open-reader text-emerald-200 text-lgi
-                    h3 class=font-bold text-base smtext-lgPanduan Rumus & Prinsip Keadilan Katrol Nilaih3
-                div
-                button onclick=closeFormulaGuideModal() class=text-emerald-100 hovertext-white text-lg
-                    i class=fa-solid fa-xmarki
-                button
-            div
-            div class=p-6 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed
-                p
-                    Dalam evaluasi pendidikan, menaikkan nilai siswa yang berada di bawah KKM tidak boleh dilakukan dengan menyamaratakan nilai begitu saja (misalnya semua siswa yang dapat 40 maupun 70 sama-sama diubah menjadi 75). Hal tersebut strongtidak adilstrong karena menghapus penghargaan atas usaha siswa yang nilainya lebih tinggi.
-                p
+    <!-- ================= MODAL: PANDUAN RUMUS & KEADILAN KATROL ================= -->
+    <div id="formulaGuideModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-xl border border-slate-200 overflow-hidden">
+            <div class="bg-emerald-700 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-book-open-reader text-emerald-200 text-lg"></i>
+                    <h3 class="font-bold text-base sm:text-lg">Panduan Rumus & Prinsip Keadilan Katrol Nilai</h3>
+                </div>
+                <button onclick="closeFormulaGuideModal()" class="text-emerald-100 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-700 leading-relaxed">
+                <p>
+                    Dalam evaluasi pendidikan, menaikkan nilai siswa yang berada di bawah KKM tidak boleh dilakukan dengan menyamaratakan nilai begitu saja (misalnya semua siswa yang dapat 40 maupun 70 sama-sama diubah menjadi 75). Hal tersebut <strong>tidak adil</strong> karena menghapus penghargaan atas usaha siswa yang nilainya lebih tinggi.
+                </p>
 
-                div class=p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-2
-                    h4 class=font-bold text-emerald-9001. Mode 1 Interpolasi Rentang Adil (Linear Scaling)h4
-                    p class=text-xs text-slate-700
+                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-2">
+                    <h4 class="font-bold text-emerald-900">1. Mode 1: Interpolasi Rentang Adil (Linear Scaling)</h4>
+                    <p class="text-xs text-slate-700">
                         Metode statistik paling ideal untuk nilai rapor. Menarik nilai terendah di kelas ke batas minimal baru (misal KKM 75) dan nilai tertinggi ke batas maksimal baru (misal 95), lalu mendistribusikan seluruh siswa di antaranya secara proporsional.
-                    p
-                    div class=p-2.5 bg-white rounded-lg font-mono text-xs text-emerald-800 border border-emerald-200
-                        Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli)  (Max_Asli - Min_Asli)) × (Max_Target - Min_Target)
-                    div
-                div
+                    </p>
+                    <div class="p-2.5 bg-white rounded-lg font-mono text-xs text-emerald-800 border border-emerald-200">
+                        Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli) / (Max_Asli - Min_Asli)) × (Max_Target - Min_Target)
+                    </div>
+                </div>
 
-                div class=p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2
-                    h4 class=font-bold text-slate-8002. Mode 2 Proporsi Persentase dari Sisa Margin (Anti-Overflow 100)h4
-                    p class=text-xs text-slate-600
-                        Setiap siswa mendapatkan tambahan poin sebesar emP%em dari selisih kekurangan nilainya terhadap nilai 100. Siswa dengan nilai rendah otomatis mendapat tambahan poin absolut lebih besar untuk membantu mencapai KKM, namun tetap tidak akan menyalip siswa di atasnya dan tidak akan pernah melebihi nilai 100.
-                    p
-                    div class=p-2.5 bg-white rounded-lg font-mono text-xs text-slate-800 border border-slate-200
-                        Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli) × (Persentase  100))
-                    div
-                div
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-slate-800">2. Mode 2: Proporsi Persentase dari Sisa Margin (Anti-Overflow 100)</h4>
+                    <p class="text-xs text-slate-600">
+                        Setiap siswa mendapatkan tambahan poin sebesar <em>P%</em> dari selisih kekurangan nilainya terhadap nilai 100. Siswa dengan nilai rendah otomatis mendapat tambahan poin absolut lebih besar untuk membantu mencapai KKM, namun tetap tidak akan menyalip siswa di atasnya dan tidak akan pernah melebihi nilai 100.
+                    </p>
+                    <div class="p-2.5 bg-white rounded-lg font-mono text-xs text-slate-800 border border-slate-200">
+                        Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli) × (Persentase / 100))
+                    </div>
+                </div>
 
-                div class=p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2
-                    h4 class=font-bold text-slate-8003. Mode 3 Persentase Kenaikan Langsung & Poin Seimbangh4
-                    p class=text-xs text-slate-600
-                        Mengalikan nilai asli siswa dengan persentase tambahan tertentu ditambah bonus poin merata sekelas, serta dibatasi oleh emCap Maksimalem (misal 98) agar nilai tidak melampaui 100.
-                    p
-                    div class=p-2.5 bg-white rounded-lg font-mono text-xs text-slate-800 border border-slate-200
-                        Nilai_Baru = Min(Cap_Maksimal, Nilai_Asli × (1 + Persentase  100) + Poin_Seimbang)
-                    div
-                div
-            div
-            div class=px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end
-                button onclick=closeFormulaGuideModal()
-                    class=px-5 py-2 rounded-xl bg-emerald-600 hoverbg-emerald-700 text-white font-semibold text-sm transition
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                    <h4 class="font-bold text-slate-800">3. Mode 3: Persentase Kenaikan Langsung & Poin Seimbang</h4>
+                    <p class="text-xs text-slate-600">
+                        Mengalikan nilai asli siswa dengan persentase tambahan tertentu ditambah bonus poin merata sekelas, serta dibatasi oleh <em>Cap Maksimal</em> (misal 98) agar nilai tidak melampaui 100.
+                    </p>
+                    <div class="p-2.5 bg-white rounded-lg font-mono text-xs text-slate-800 border border-slate-200">
+                        Nilai_Baru = Min(Cap_Maksimal, Nilai_Asli × (1 + Persentase / 100) + Poin_Seimbang)
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex justify-end">
+                <button onclick="closeFormulaGuideModal()"
+                    class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm transition">
                     Mengerti & Tutup
-                button
-            div
-        div
-    div
+                </button>
+            </div>
+        </div>
+    </div>
 
-    !-- ================= TOAST NOTIFICATION CONTAINER ================= --
-    div id=toastContainer class=fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 smpx-0div
+    <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
-    !-- ================= APPLICATION JAVASCRIPT ================= --
-    script
-        
-          ============================================================================
-          SMARTGRADE PROPORTIONAL ADJUSTER - CORE LOGIC & STATE MANAGEMENT
-          ============================================================================
-         
+    <!-- ================= APPLICATION JAVASCRIPT ================= -->
+    <script>
+        /**
+         * ============================================================================
+         * SMARTGRADE PROPORTIONAL ADJUSTER - CORE LOGIC & STATE MANAGEMENT
+         * ============================================================================
+         */
 
         const STORAGE_KEY_STUDENTS = 'smartgrade_students_v1';
         const STORAGE_KEY_CONFIG = 'smartgrade_config_v1';
 
-         Default Application State
+        // Default Application State
         let students = [];
         let config = {
-            kkm 75,
-            rounding 0,  0, 1, or 2 decimal places
-            preventDecrease true,
-            mode 'interpolation',  'interpolation'  'margin'  'direct'
-            targetMin 75,
-            targetMax 95,
-            marginPercent 50,
-            directPercent 20,
-            directFlat 5,
-            directCap 98
+            kkm: 75,
+            rounding: 0, // 0, 1, or 2 decimal places
+            preventDecrease: true,
+            mode: 'interpolation', // 'interpolation' | 'margin' | 'direct'
+            targetMin: 75,
+            targetMax: 95,
+            marginPercent: 50,
+            directPercent: 20,
+            directFlat: 5,
+            directCap: 98
         };
 
-         Sample Data (18 Siswa dengan distribusi nilai realistis antara 42 hingga 88)
+        // Sample Data (18 Siswa dengan distribusi nilai realistis antara 42 hingga 88)
         const SAMPLE_STUDENTS = [
-            { id 1, name Aditya Pratama Putra, originalScore 52 },
-            { id 2, name Aisyah Putri Ramadhani, originalScore 78 },
-            { id 3, name Bagas Satrio Wibowo, originalScore 42 },
-            { id 4, name Bunga Citra Lestari, originalScore 65 },
-            { id 5, name Cahyo Nugroho, originalScore 58 },
-            { id 6, name Dewi Sartika Sari, originalScore 84 },
-            { id 7, name Dimas Anggara, originalScore 48 },
-            { id 8, name Eka Wahyuni, originalScore 71 },
-            { id 9, name Fajar Siddiq, originalScore 60 },
-            { id 10, name Gita Gutawa Maharani, originalScore 88 },
-            { id 11, name Hendra Setiawan, originalScore 55 },
-            { id 12, name Indah Permatasari, originalScore 63 },
-            { id 13, name Joko Susilo, originalScore 45 },
-            { id 14, name Kartika Putri, originalScore 74 },
-            { id 15, name Lukman Hakim, originalScore 68 },
-            { id 16, name Mutia Ayu Ningrum, originalScore 81 },
-            { id 17, name Naufal Hidayat, originalScore 50 },
-            { id 18, name Putri Marino, originalScore 67 }
+            { id: 1, name: "Aditya Pratama Putra", originalScore: 52 },
+            { id: 2, name: "Aisyah Putri Ramadhani", originalScore: 78 },
+            { id: 3, name: "Bagas Satrio Wibowo", originalScore: 42 },
+            { id: 4, name: "Bunga Citra Lestari", originalScore: 65 },
+            { id: 5, name: "Cahyo Nugroho", originalScore: 58 },
+            { id: 6, name: "Dewi Sartika Sari", originalScore: 84 },
+            { id: 7, name: "Dimas Anggara", originalScore: 48 },
+            { id: 8, name: "Eka Wahyuni", originalScore: 71 },
+            { id: 9, name: "Fajar Siddiq", originalScore: 60 },
+            { id: 10, name: "Gita Gutawa Maharani", originalScore: 88 },
+            { id: 11, name: "Hendra Setiawan", originalScore: 55 },
+            { id: 12, name: "Indah Permatasari", originalScore: 63 },
+            { id: 13, name: "Joko Susilo", originalScore: 45 },
+            { id: 14, name: "Kartika Putri", originalScore: 74 },
+            { id: 15, name: "Lukman Hakim", originalScore: 68 },
+            { id: 16, name: "Mutia Ayu Ningrum", originalScore: 81 },
+            { id: 17, name: "Naufal Hidayat", originalScore: 50 },
+            { id: 18, name: "Putri Marino", originalScore: 67 }
         ];
 
-        
-          Initialize App on Window Load
-         
+        /**
+         * Initialize App on Window Load
+         */
         window.onload = function () {
             loadFromLocalStorage();
             syncConfigToUI();
             recalculateAndRender();
 
-             Redraw canvas on window resize
-            window.addEventListener('resize', () = {
+            // Redraw canvas on window resize
+            window.addEventListener('resize', () => {
                 const chartPanel = document.getElementById('chartContainerPanel');
                 if (!chartPanel.classList.contains('hidden')) {
                     drawDistributionChart();
@@ -982,9 +982,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             });
         };
 
-        
-          Load saved state from localStorage or fall back to sample data on first visit
-         
+        /**
+         * Load saved state from localStorage or fall back to sample data on first visit
+         */
         function loadFromLocalStorage() {
             try {
                 const savedConfig = localStorage.getItem(STORAGE_KEY_CONFIG);
@@ -1001,25 +1001,25 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                         return;
                     }
                 }
-                 First time visit load sample data automatically so teacher sees immediate live preview
+                // First time visit: load sample data automatically so teacher sees immediate live preview
                 students = JSON.parse(JSON.stringify(SAMPLE_STUDENTS));
                 saveToLocalStorage();
             } catch (err) {
-                console.error(Gagal memuat dari localStorage, err);
+                console.error("Gagal memuat dari localStorage:", err);
                 students = JSON.parse(JSON.stringify(SAMPLE_STUDENTS));
             }
         }
 
-        
-          Save current state to localStorage
-         
+        /**
+         * Save current state to localStorage
+         */
         function saveToLocalStorage() {
             try {
                 localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(config));
                 localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(students));
                 flashSaveIndicator();
             } catch (err) {
-                console.error(Gagal menyimpan ke localStorage, err);
+                console.error("Gagal menyimpan ke localStorage:", err);
             }
         }
 
@@ -1027,31 +1027,31 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const el = document.getElementById('saveIndicator');
             if (!el) return;
             el.classList.add('scale-105', 'bg-emerald-200');
-            setTimeout(() = {
+            setTimeout(() => {
                 el.classList.remove('scale-105', 'bg-emerald-200');
             }, 300);
         }
 
-        
-          Sync configuration state into UI input elements
-         
+        /**
+         * Sync configuration state into UI input elements
+         */
         function syncConfigToUI() {
             document.getElementById('kkmInput').value = config.kkm;
             document.getElementById('roundingSelect').value = String(config.rounding);
             document.getElementById('preventDecreaseToggle').checked = Boolean(config.preventDecrease);
 
-             Mode 1 inputs
+            // Mode 1 inputs
             document.getElementById('targetMinInput').value = config.targetMin;
             document.getElementById('targetMinSlider').value = config.targetMin;
             document.getElementById('targetMaxInput').value = config.targetMax;
             document.getElementById('targetMaxSlider').value = config.targetMax;
 
-             Mode 2 inputs
+            // Mode 2 inputs
             document.getElementById('marginPercentInput').value = config.marginPercent;
             document.getElementById('marginPercentSlider').value = config.marginPercent;
             document.getElementById('marginPercentBadge').textContent = `${config.marginPercent}% dari sisa margin ke 100`;
 
-             Mode 3 inputs
+            // Mode 3 inputs
             document.getElementById('directPercentInput').value = config.directPercent;
             document.getElementById('directPercentSlider').value = config.directPercent;
             document.getElementById('directFlatInput').value = config.directFlat;
@@ -1062,9 +1062,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             updateModeUI(config.mode);
         }
 
-        
-          Select Katrol Mode ('interpolation'  'margin'  'direct')
-         
+        /**
+         * Select Katrol Mode ('interpolation' | 'margin' | 'direct')
+         */
         function selectMode(mode) {
             config.mode = mode;
             updateModeUI(mode);
@@ -1074,12 +1074,12 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
 
         function updateModeUI(mode) {
             const modes = [
-                { key 'interpolation', card 'modeCard1', check 'modeCheck1', panel 'paramsInterpolation', label 'Mode 1 Interpolasi Rentang Adil' },
-                { key 'margin', card 'modeCard2', check 'modeCheck2', panel 'paramsMargin', label 'Mode 2 Proporsi Sisa Margin 100' },
-                { key 'direct', card 'modeCard3', check 'modeCheck3', panel 'paramsDirect', label 'Mode 3 Persentase Langsung & Poin Seimbang' }
+                { key: 'interpolation', card: 'modeCard1', check: 'modeCheck1', panel: 'paramsInterpolation', label: 'Mode 1: Interpolasi Rentang Adil' },
+                { key: 'margin', card: 'modeCard2', check: 'modeCheck2', panel: 'paramsMargin', label: 'Mode 2: Proporsi Sisa Margin 100' },
+                { key: 'direct', card: 'modeCard3', check: 'modeCheck3', panel: 'paramsDirect', label: 'Mode 3: Persentase Langsung & Poin Seimbang' }
             ];
 
-            modes.forEach(m = {
+            modes.forEach(m => {
                 const cardEl = document.getElementById(m.card);
                 const checkEl = document.getElementById(m.check);
                 const panelEl = document.getElementById(m.panel);
@@ -1088,7 +1088,7 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                     cardEl.classList.add('mode-card-active');
                     checkEl.className = 'fa-solid fa-circle-check text-emerald-600 text-base';
                     panelEl.classList.remove('hidden');
-                    document.getElementById('formulaSummaryFooter').textContent = `Metode aktif ${m.label}`;
+                    document.getElementById('formulaSummaryFooter').textContent = `Metode aktif: ${m.label}`;
                 } else {
                     cardEl.classList.remove('mode-card-active');
                     checkEl.className = 'fa-regular fa-circle text-slate-400 text-base';
@@ -1097,9 +1097,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             });
         }
 
-        
-          Sync paired slider and number inputs
-         
+        /**
+         * Sync paired slider and number inputs
+         */
         function syncInput(targetId, value) {
             const targetEl = document.getElementById(targetId);
             if (targetEl) {
@@ -1108,23 +1108,23 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             handleConfigChange();
         }
 
-        
-          Quick helper to set Target Min equal to KKM
-         
+        /**
+         * Quick helper to set Target Min equal to KKM
+         */
         function syncMinTargetWithKKM() {
-            const kkmVal = parseFloat(document.getElementById('kkmInput').value)  75;
+            const kkmVal = parseFloat(document.getElementById('kkmInput').value) || 75;
             document.getElementById('targetMinInput').value = kkmVal;
             document.getElementById('targetMinSlider').value = kkmVal;
             handleConfigChange();
             showToast(`Target Nilai Terendah Baru disamakan dengan KKM (${kkmVal})`, 'success');
         }
 
-        
-          Read configuration changes from DOM and trigger recalculation
-         
+        /**
+         * Read configuration changes from DOM and trigger recalculation
+         */
         function handleConfigChange() {
             config.kkm = clampNumber(parseFloat(document.getElementById('kkmInput').value), 0, 100, 75);
-            config.rounding = parseInt(document.getElementById('roundingSelect').value, 10)  0;
+            config.rounding = parseInt(document.getElementById('roundingSelect').value, 10) || 0;
             config.preventDecrease = document.getElementById('preventDecreaseToggle').checked;
 
             config.targetMin = clampNumber(parseFloat(document.getElementById('targetMinInput').value), 0, 100, 75);
@@ -1146,12 +1146,12 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             return Math.min(max, Math.max(min, val));
         }
 
-        
-          Format number according to chosen decimal rounding
-         
+        /**
+         * Format number according to chosen decimal rounding
+         */
         function roundValue(num, decimals) {
             const factor = Math.pow(10, decimals);
-            return Math.round((num + Number.EPSILON)  factor)  factor;
+            return Math.round((num + Number.EPSILON) * factor) / factor;
         }
 
         function formatDisplayNumber(num, decimals = config.rounding) {
@@ -1161,94 +1161,94 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             return rounded.toFixed(decimals);
         }
 
-        
-          ============================================================================
-          CORE MATHEMATICAL KATROL ENGINE
-          ============================================================================
-         
+        /**
+         * ============================================================================
+         * CORE MATHEMATICAL KATROL ENGINE
+         * ============================================================================
+         */
         function getCalculatedStudents() {
-            if (!students  students.length === 0) return [];
+            if (!students || students.length === 0) return [];
 
-             Extract original scores to find Min_Asli and Max_Asli
-            const originalScores = students.map(s = Number(s.originalScore)  0);
+            // Extract original scores to find Min_Asli and Max_Asli
+            const originalScores = students.map(s => Number(s.originalScore) || 0);
             const minOriginal = Math.min(...originalScores);
             const maxOriginal = Math.max(...originalScores);
 
-             Step 1 Compute adjusted scores for each student
-            const processed = students.map((student, idx) = {
+            // Step 1: Compute adjusted scores for each student
+            const processed = students.map((student, idx) => {
                 const orig = clampNumber(Number(student.originalScore), 0, 100, 0);
                 let rawNew = orig;
 
                 if (config.mode === 'interpolation') {
-                     Rumus Mode 1 Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli)  (Max_Asli - Min_Asli))  (Max_Target - Min_Target)
+                    // Rumus Mode 1: Nilai_Baru = Min_Target + ((Nilai_Asli - Min_Asli) / (Max_Asli - Min_Asli)) * (Max_Target - Min_Target)
                     if (maxOriginal === minOriginal) {
                         rawNew = Math.max(orig, config.targetMin);
                     } else {
-                        rawNew = config.targetMin + ((orig - minOriginal)  (maxOriginal - minOriginal))  (config.targetMax - config.targetMin);
+                        rawNew = config.targetMin + ((orig - minOriginal) / (maxOriginal - minOriginal)) * (config.targetMax - config.targetMin);
                     }
                 } else if (config.mode === 'margin') {
-                     Rumus Mode 2 Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli)  (Persentase  100))
-                    rawNew = orig + ((100 - orig)  (config.marginPercent  100));
+                    // Rumus Mode 2: Nilai_Baru = Nilai_Asli + ((100 - Nilai_Asli) * (Persentase / 100))
+                    rawNew = orig + ((100 - orig) * (config.marginPercent / 100));
                 } else if (config.mode === 'direct') {
-                     Rumus Mode 3 Persentase Langsung & Poin Seimbang dengan Cap Maksimal
-                    rawNew = orig  (1 + (config.directPercent  100)) + config.directFlat;
+                    // Rumus Mode 3: Persentase Langsung & Poin Seimbang dengan Cap Maksimal
+                    rawNew = orig * (1 + (config.directPercent / 100)) + config.directFlat;
                     rawNew = Math.min(config.directCap, rawNew);
                 }
 
-                 Prevent decrease below original score if enabled
+                // Prevent decrease below original score if enabled
                 if (config.preventDecrease) {
                     rawNew = Math.max(orig, rawNew);
                 }
 
-                 Clamp between 0 and 100
+                // Clamp between 0 and 100
                 rawNew = Math.min(100, Math.max(0, rawNew));
 
-                 Apply rounding option
+                // Apply rounding option
                 const finalNew = roundValue(rawNew, config.rounding);
                 const diffPoints = roundValue(finalNew - orig, 2);
-                const pctIncrease = orig  0  roundValue(((finalNew - orig)  orig)  100, 1)  0;
+                const pctIncrease = orig > 0 ? roundValue(((finalNew - orig) / orig) * 100, 1) : 0;
 
                 return {
                     ...student,
-                    no idx + 1,
-                    originalScore orig,
-                    adjustedScore finalNew,
-                    rawAdjustedScore rawNew,
-                    diffPoints diffPoints,
-                    pctIncrease pctIncrease,
-                    passOld orig = config.kkm,
-                    passNew finalNew = config.kkm
+                    no: idx + 1,
+                    originalScore: orig,
+                    adjustedScore: finalNew,
+                    rawAdjustedScore: rawNew,
+                    diffPoints: diffPoints,
+                    pctIncrease: pctIncrease,
+                    passOld: orig >= config.kkm,
+                    passNew: finalNew >= config.kkm
                 };
             });
 
-             Step 2 Calculate Rankings (Competition Ranking by Original Score & Adjusted Score)
-             Sort copy descending by originalScore
-            const sortedByOrig = [...processed].sort((a, b) = b.originalScore - a.originalScore);
+            // Step 2: Calculate Rankings (Competition Ranking by Original Score & Adjusted Score)
+            // Sort copy descending by originalScore
+            const sortedByOrig = [...processed].sort((a, b) => b.originalScore - a.originalScore);
             const origRankMap = new Map();
-            sortedByOrig.forEach((item, index) = {
+            sortedByOrig.forEach((item, index) => {
                 if (!origRankMap.has(item.originalScore)) {
                     origRankMap.set(item.originalScore, index + 1);
                 }
             });
 
-            const sortedByNew = [...processed].sort((a, b) = b.rawAdjustedScore - a.rawAdjustedScore);
+            const sortedByNew = [...processed].sort((a, b) => b.rawAdjustedScore - a.rawAdjustedScore);
             const newRankMap = new Map();
-            sortedByNew.forEach((item, index) = {
+            sortedByNew.forEach((item, index) => {
                 if (!newRankMap.has(item.rawAdjustedScore)) {
                     newRankMap.set(item.rawAdjustedScore, index + 1);
                 }
             });
 
-            return processed.map(item = ({
+            return processed.map(item => ({
                 ...item,
-                rankOriginal origRankMap.get(item.originalScore),
-                rankNew newRankMap.get(item.rawAdjustedScore)
+                rankOriginal: origRankMap.get(item.originalScore),
+                rankNew: newRankMap.get(item.rawAdjustedScore)
             }));
         }
 
-        
-          Recalculate everything and update Dashboard + Table + Chart
-         
+        /**
+         * Recalculate everything and update Dashboard + Table + Chart
+         */
         function recalculateAndRender() {
             const calculated = getCalculatedStudents();
             updateDashboardStats(calculated);
@@ -1260,11 +1260,11 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             }
         }
 
-        
-          Update Module C Dashboard Statistik & Analitik Kelas
-         
+        /**
+         * Update Module C: Dashboard Statistik & Analitik Kelas
+         */
         function updateDashboardStats(calculated) {
-            document.getElementById('statKKMBadge').textContent = `KKM ${config.kkm}`;
+            document.getElementById('statKKMBadge').textContent = `KKM: ${config.kkm}`;
             document.getElementById('studentCountBadge').textContent = `${calculated.length} Siswa`;
 
             if (calculated.length === 0) {
@@ -1280,17 +1280,17 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 document.getElementById('statMeanNew').textContent = '0';
                 document.getElementById('statMeanDiff').textContent = '+0 Poin';
 
-                document.getElementById('statPassOldCount').textContent = '00';
+                document.getElementById('statPassOldCount').textContent = '0/0';
                 document.getElementById('statPassOldPct').textContent = '(0%)';
-                document.getElementById('statPassNewCount').textContent = '00';
+                document.getElementById('statPassNewCount').textContent = '0/0';
                 document.getElementById('statPassNewPct').textContent = '(0%)';
                 document.getElementById('passProgressBar').style.width = '0%';
                 return;
             }
 
             const total = calculated.length;
-            const origScores = calculated.map(s = s.originalScore);
-            const newScores = calculated.map(s = s.adjustedScore);
+            const origScores = calculated.map(s => s.originalScore);
+            const newScores = calculated.map(s => s.adjustedScore);
 
             const minOld = Math.min(...origScores);
             const minNew = Math.min(...newScores);
@@ -1300,40 +1300,40 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const maxNew = Math.max(...newScores);
             const maxDiff = roundValue(maxNew - maxOld, 2);
 
-            const meanOld = origScores.reduce((a, b) = a + b, 0)  total;
-            const meanNew = newScores.reduce((a, b) = a + b, 0)  total;
+            const meanOld = origScores.reduce((a, b) => a + b, 0) / total;
+            const meanNew = newScores.reduce((a, b) => a + b, 0) / total;
             const meanDiff = roundValue(meanNew - meanOld, 2);
 
-            const passOldCount = calculated.filter(s = s.passOld).length;
-            const passNewCount = calculated.filter(s = s.passNew).length;
-            const passOldPct = Math.round((passOldCount  total)  100);
-            const passNewPct = Math.round((passNewCount  total)  100);
+            const passOldCount = calculated.filter(s => s.passOld).length;
+            const passNewCount = calculated.filter(s => s.passNew).length;
+            const passOldPct = Math.round((passOldCount / total) * 100);
+            const passNewPct = Math.round((passNewCount / total) * 100);
 
-             Populate DOM
+            // Populate DOM
             document.getElementById('statMinOld').textContent = roundValue(minOld, 1);
             document.getElementById('statMinNew').textContent = formatDisplayNumber(minNew);
-            document.getElementById('statMinDiff').textContent = `${minDiff = 0  '+'  ''}${minDiff} Poin`;
+            document.getElementById('statMinDiff').textContent = `${minDiff >= 0 ? '+' : ''}${minDiff} Poin`;
 
             document.getElementById('statMaxOld').textContent = roundValue(maxOld, 1);
             document.getElementById('statMaxNew').textContent = formatDisplayNumber(maxNew);
-            document.getElementById('statMaxDiff').textContent = `${maxDiff = 0  '+'  ''}${maxDiff} Poin`;
+            document.getElementById('statMaxDiff').textContent = `${maxDiff >= 0 ? '+' : ''}${maxDiff} Poin`;
 
             document.getElementById('statMeanOld').textContent = meanOld.toFixed(1);
             document.getElementById('statMeanNew').textContent = meanNew.toFixed(1);
-            document.getElementById('statMeanDiff').textContent = `${meanDiff = 0  '+'  ''}${meanDiff.toFixed(1)} Poin`;
+            document.getElementById('statMeanDiff').textContent = `${meanDiff >= 0 ? '+' : ''}${meanDiff.toFixed(1)} Poin`;
 
-            document.getElementById('statPassOldCount').textContent = `${passOldCount}${total}`;
+            document.getElementById('statPassOldCount').textContent = `${passOldCount}/${total}`;
             document.getElementById('statPassOldPct').textContent = `(${passOldPct}%)`;
-            document.getElementById('statPassNewCount').textContent = `${passNewCount}${total}`;
+            document.getElementById('statPassNewCount').textContent = `${passNewCount}/${total}`;
             document.getElementById('statPassNewPct').textContent = `(${passNewPct}%)`;
             document.getElementById('passProgressBar').style.width = `${passNewPct}%`;
         }
 
-        
-          Render Module D Tabel Perbandingan Hasil Katrol
-         
+        /**
+         * Render Module D: Tabel Perbandingan Hasil Katrol
+         */
         function renderTable(precalculated = null) {
-            const data = precalculated  getCalculatedStudents();
+            const data = precalculated || getCalculatedStudents();
             const tbody = document.getElementById('studentTableBody');
             const emptyState = document.getElementById('emptyStateContainer');
 
@@ -1344,12 +1344,12 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             }
             emptyState.classList.add('hidden');
 
-             Apply Search Filter
-            const query = (document.getElementById('searchStudentInput').value  '').trim().toLowerCase();
+            // Apply Search Filter
+            const query = (document.getElementById('searchStudentInput').value || '').trim().toLowerCase();
             const statusFilter = document.getElementById('filterStatusSelect').value;
             const sortOrder = document.getElementById('sortOrderSelect').value;
 
-            let filtered = data.filter(item = {
+            let filtered = data.filter(item => {
                 const matchesName = item.name.toLowerCase().includes(query);
                 if (!matchesName) return false;
 
@@ -1359,11 +1359,11 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 return true;
             });
 
-             Apply Sorting
-            filtered.sort((a, b) = {
+            // Apply Sorting
+            filtered.sort((a, b) => {
                 if (sortOrder === 'no_asc') return a.no - b.no;
-                if (sortOrder === 'rank_asc') return a.rankOriginal - b.rankOriginal  a.no - b.no;
-                if (sortOrder === 'rank_desc') return a.originalScore - b.originalScore  a.no - b.no;
+                if (sortOrder === 'rank_asc') return a.rankOriginal - b.rankOriginal || a.no - b.no;
+                if (sortOrder === 'rank_desc') return a.originalScore - b.originalScore || a.no - b.no;
                 if (sortOrder === 'name_asc') return a.name.localeCompare(b.name, 'id');
                 if (sortOrder === 'gain_desc') return b.diffPoints - a.diffPoints;
                 return a.no - b.no;
@@ -1371,128 +1371,128 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
 
             if (filtered.length === 0) {
                 tbody.innerHTML = `
-                    tr
-                        td colspan=8 class=py-10 text-center text-slate-500 text-sm
-                            Tidak ditemukan data siswa yang sesuai dengan pencarianfilter.
-                        td
-                    tr
+                    <tr>
+                        <td colspan="8" class="py-10 text-center text-slate-500 text-sm">
+                            Tidak ditemukan data siswa yang sesuai dengan pencarian/filter.
+                        </td>
+                    </tr>
                 `;
                 return;
             }
 
-            tbody.innerHTML = filtered.map(student = {
-                 Status Badge Awal
+            tbody.innerHTML = filtered.map(student => {
+                // Status Badge Awal
                 const badgeOld = student.passOld
-                     `span class=inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800
-                         i class=fa-solid fa-check text-[9px]i Tuntas
-                       span`
-                     `span class=inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-100 text-rose-700
-                         i class=fa-solid fa-circle-exclamation text-[9px]i &lt; KKM
-                       span`;
+                    ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                         <i class="fa-solid fa-check text-[9px]"></i> Tuntas
+                       </span>`
+                    : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-100 text-rose-700">
+                         <i class="fa-solid fa-circle-exclamation text-[9px]"></i> &lt; KKM
+                       </span>`;
 
-                 Status Badge Akhir
+                // Status Badge Akhir
                 const badgeNew = student.passNew
-                     `span class=inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-600 text-white shadow-2xs
-                         i class=fa-solid fa-check text-[9px]i Tuntas
-                       span`
-                     `span class=inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-600 text-white
-                         i class=fa-solid fa-triangle-exclamation text-[9px]i Belum Tuntas
-                       span`;
+                    ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-600 text-white shadow-2xs">
+                         <i class="fa-solid fa-check text-[9px]"></i> Tuntas
+                       </span>`
+                    : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-600 text-white">
+                         <i class="fa-solid fa-triangle-exclamation text-[9px]"></i> Belum Tuntas
+                       </span>`;
 
-                 Medal icon for top 3 ranks
-                let rankBadge = `span class=inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs#${student.rankOriginal}span`;
+                // Medal icon for top 3 ranks
+                let rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs">#${student.rankOriginal}</span>`;
                 if (student.rankOriginal === 1) {
-                    rankBadge = `span class=inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 font-extrabold text-xs title=Peringkat 1 Kelasi class=fa-solid fa-crown text-amber-500 mr-0.5 text-[10px]i1span`;
+                    rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-amber-100 text-amber-800 border border-amber-300 font-extrabold text-xs" title="Peringkat 1 Kelas"><i class="fa-solid fa-crown text-amber-500 mr-0.5 text-[10px]"></i>1</span>`;
                 } else if (student.rankOriginal === 2) {
-                    rankBadge = `span class=inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200 text-slate-800 border border-slate-300 font-extrabold text-xs#2span`;
+                    rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-200 text-slate-800 border border-slate-300 font-extrabold text-xs">#2</span>`;
                 } else if (student.rankOriginal === 3) {
-                    rankBadge = `span class=inline-flex items-center justify-center w-7 h-7 rounded-lg bg-orange-100 text-orange-800 border border-orange-200 font-extrabold text-xs#3span`;
+                    rankBadge = `<span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-orange-100 text-orange-800 border border-orange-200 font-extrabold text-xs">#3</span>`;
                 }
 
-                 Percentage bar width (capped at 100% visually)
+                // Percentage bar width (capped at 100% visually)
                 const barWidth = Math.min(100, Math.max(4, Math.round(student.pctIncrease)));
 
                 return `
-                    tr class=hoverbg-emerald-5030 transition group
-                        !-- No --
-                        td class=py-3 px-4 text-center font-semibold text-slate-500 text-xs${student.no}td
+                    <tr class="hover:bg-emerald-50/30 transition group">
+                        <!-- No -->
+                        <td class="py-3 px-4 text-center font-semibold text-slate-500 text-xs">${student.no}</td>
 
-                        !-- Nama Siswa (Inline Editable) --
-                        td class=py-3 px-4
-                            input type=text value=${escapeHtml(student.name)}
-                                onchange=updateStudentName(${student.id}, this.value)
-                                class=w-full bg-transparent font-semibold text-slate-800 hoverbg-white focusbg-white px-2 py-1 -mx-2 rounded-lg border border-transparent hoverborder-slate-200 focusborder-emerald-500 focusoutline-none transition
-                                title=Klik untuk mengedit nama siswa
-                        td
+                        <!-- Nama Siswa (Inline Editable) -->
+                        <td class="py-3 px-4">
+                            <input type="text" value="${escapeHtml(student.name)}"
+                                onchange="updateStudentName(${student.id}, this.value)"
+                                class="w-full bg-transparent font-semibold text-slate-800 hover:bg-white focus:bg-white px-2 py-1 -mx-2 rounded-lg border border-transparent hover:border-slate-200 focus:border-emerald-500 focus:outline-none transition"
+                                title="Klik untuk mengedit nama siswa">
+                        </td>
 
-                        !-- Nilai Asli (Inline Editable + Badge) --
-                        td class=py-3 px-4 text-center
-                            div class=inline-flex items-center justify-center gap-2
-                                input type=number min=0 max=100 step=0.1 value=${student.originalScore}
-                                    onchange=updateStudentScore(${student.id}, this.value)
-                                    class=w-16 text-center font-bold text-slate-700 bg-slate-100 hoverbg-white focusbg-white py-1 px-1.5 rounded-lg border border-slate-200 focusborder-emerald-500 focusoutline-none transition
-                                    title=Klik untuk mengubah Nilai Asli
+                        <!-- Nilai Asli (Inline Editable + Badge) -->
+                        <td class="py-3 px-4 text-center">
+                            <div class="inline-flex items-center justify-center gap-2">
+                                <input type="number" min="0" max="100" step="0.1" value="${student.originalScore}"
+                                    onchange="updateStudentScore(${student.id}, this.value)"
+                                    class="w-16 text-center font-bold text-slate-700 bg-slate-100 hover:bg-white focus:bg-white py-1 px-1.5 rounded-lg border border-slate-200 focus:border-emerald-500 focus:outline-none transition"
+                                    title="Klik untuk mengubah Nilai Asli">
                                 ${badgeOld}
-                            div
-                        td
+                            </div>
+                        </td>
 
-                        !-- Nilai Hasil Katrol --
-                        td class=py-3 px-4 text-center bg-emerald-5040 border-x border-emerald-10080
-                            div class=inline-flex items-center justify-center gap-2
-                                span class=text-base font-extrabold ${student.passNew  'text-emerald-800'  'text-rose-700'}
+                        <!-- Nilai Hasil Katrol -->
+                        <td class="py-3 px-4 text-center bg-emerald-50/40 border-x border-emerald-100/80">
+                            <div class="inline-flex items-center justify-center gap-2">
+                                <span class="text-base font-extrabold ${student.passNew ? 'text-emerald-800' : 'text-rose-700'}">
                                     ${formatDisplayNumber(student.adjustedScore)}
-                                span
+                                </span>
                                 ${badgeNew}
-                            div
-                        td
+                            </div>
+                        </td>
 
-                        !-- Selisih Penambahan (+Poin) --
-                        td class=py-3 px-4 text-center
-                            span class=inline-block font-bold text-xs px-2.5 py-1 rounded-lg ${student.diffPoints  0  'bg-teal-50 text-teal-700 border border-teal-20060'  'bg-slate-100 text-slate-600'}
-                                ${student.diffPoints = 0  '+'  ''}${student.diffPoints} Poin
-                            span
-                        td
+                        <!-- Selisih Penambahan (+Poin) -->
+                        <td class="py-3 px-4 text-center">
+                            <span class="inline-block font-bold text-xs px-2.5 py-1 rounded-lg ${student.diffPoints > 0 ? 'bg-teal-50 text-teal-700 border border-teal-200/60' : 'bg-slate-100 text-slate-600'}">
+                                ${student.diffPoints >= 0 ? '+' : ''}${student.diffPoints} Poin
+                            </span>
+                        </td>
 
-                        !-- Persentase Kenaikan (%) --
-                        td class=py-3 px-4 text-center
-                            div class=flex flex-col items-center justify-center max-w-[120px] mx-auto
-                                span class=text-xs font-bold text-emerald-700
-                                    ${student.pctIncrease = 0  '+'  ''}${student.pctIncrease}%
-                                span
-                                div class=w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-1
-                                    div class=bg-emerald-500 h-full rounded-full style=width ${barWidth}%div
-                                div
-                            div
-                        td
+                        <!-- Persentase Kenaikan (%) -->
+                        <td class="py-3 px-4 text-center">
+                            <div class="flex flex-col items-center justify-center max-w-[120px] mx-auto">
+                                <span class="text-xs font-bold text-emerald-700">
+                                    ${student.pctIncrease >= 0 ? '+' : ''}${student.pctIncrease}%
+                                </span>
+                                <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mt-1">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: ${barWidth}%"></div>
+                                </div>
+                            </div>
+                        </td>
 
-                        !-- Peringkat (Rank) --
-                        td class=py-3 px-4 text-center
-                            div class=inline-flex items-center gap-1.5 title=Peringkat Sebelum #${student.rankOriginal} → Sesudah #${student.rankNew}
+                        <!-- Peringkat (Rank) -->
+                        <td class="py-3 px-4 text-center">
+                            <div class="inline-flex items-center gap-1.5" title="Peringkat Sebelum: #${student.rankOriginal} → Sesudah: #${student.rankNew}">
                                 ${rankBadge}
-                                span class=text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200
+                                <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
                                     Tetap
-                                span
-                            div
-                        td
+                                </span>
+                            </div>
+                        </td>
 
-                        !-- Aksi --
-                        td class=py-3 px-4 text-center
-                            button onclick=deleteStudent(${student.id})
-                                class=w-8 h-8 rounded-lg text-slate-400 hovertext-rose-600 hoverbg-rose-50 transition inline-flex items-center justify-center
-                                title=Hapus baris siswa ini
-                                i class=fa-solid fa-trash-can text-xsi
-                            button
-                        td
-                    tr
+                        <!-- Aksi -->
+                        <td class="py-3 px-4 text-center">
+                            <button onclick="deleteStudent(${student.id})"
+                                class="w-8 h-8 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition inline-flex items-center justify-center"
+                                title="Hapus baris siswa ini">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </td>
+                    </tr>
                 `;
             }).join('');
         }
 
-        
-          ============================================================================
-          STUDENT CRUD & BULK PASTE HANDLERS (MODULE B)
-          ============================================================================
-         
+        /**
+         * ============================================================================
+         * STUDENT CRUD & BULK PASTE HANDLERS (MODULE B)
+         * ============================================================================
+         */
         function switchInputTab(tab) {
             const bulkTab = document.getElementById('inputTabBulk');
             const manualTab = document.getElementById('inputTabManual');
@@ -1503,111 +1503,111 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 bulkTab.classList.remove('hidden');
                 manualTab.classList.add('hidden');
                 btnBulk.className = 'px-2.5 py-1 rounded-md bg-white text-emerald-800 shadow-sm transition';
-                btnManual.className = 'px-2.5 py-1 rounded-md text-slate-600 hovertext-slate-900 transition';
+                btnManual.className = 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition';
             } else {
                 bulkTab.classList.add('hidden');
                 manualTab.classList.remove('hidden');
                 btnManual.className = 'px-2.5 py-1 rounded-md bg-white text-emerald-800 shadow-sm transition';
-                btnBulk.className = 'px-2.5 py-1 rounded-md text-slate-600 hovertext-slate-900 transition';
+                btnBulk.className = 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition';
             }
         }
 
         function fillExamplePasteText() {
             const sampleText = [
-                Rizky Ramadhant48,
-                Siti Nurhalizat72,
-                Taufik Hidayatt55.5,
-                Umar Bakrit61,
-                Vina Panduwinatat83,
-                Wahyu Setiawant44,
-                Yuni Sharat69,
-                Zaki Yamanit59
-            ].join('n');
+                "Rizky Ramadhan\t48",
+                "Siti Nurhaliza\t72",
+                "Taufik Hidayat\t55.5",
+                "Umar Bakri\t61",
+                "Vina Panduwinata\t83",
+                "Wahyu Setiawan\t44",
+                "Yuni Shara\t69",
+                "Zaki Yamani\t59"
+            ].join('\n');
             document.getElementById('bulkPasteTextarea').value = sampleText;
-            showToast(Contoh format berhasil diisi. Klik 'Proses & Ganti Tabel' atau 'Tambahkan'., info);
+            showToast("Contoh format berhasil diisi. Klik 'Proses & Ganti Tabel' atau 'Tambahkan'.", "info");
         }
 
-        
-          Parse Bulk Copy-Paste from Excel  Google Sheets  CSV
-         
+        /**
+         * Parse Bulk Copy-Paste from Excel / Google Sheets / CSV
+         */
         function processBulkPaste(actionMode = 'replace') {
             const rawText = document.getElementById('bulkPasteTextarea').value.trim();
             if (!rawText) {
-                showToast(Kotak teks masih kosong! Silakan tempel (paste) data nama dan nilai siswa terlebih dahulu., error);
+                showToast("Kotak teks masih kosong! Silakan tempel (paste) data nama dan nilai siswa terlebih dahulu.", "error");
                 return;
             }
 
-            const lines = rawText.split(rn);
+            const lines = rawText.split(/\r?\n/);
             const parsedList = [];
 
-            lines.forEach((line) = {
+            lines.forEach((line) => {
                 const trimmed = line.trim();
                 if (!trimmed) return;
 
-                 Support Tab (t), semicolon (;), comma (,), or multiple spaces with trailing number
+                // Support Tab (\t), semicolon (;), comma (,), or multiple spaces with trailing number
                 let namePart = '';
                 let scorePart = '';
 
-                if (trimmed.includes('t')) {
-                    const parts = trimmed.split('t').map(p = p.trim()).filter(Boolean);
-                    if (parts.length = 2) {
+                if (trimmed.includes('\t')) {
+                    const parts = trimmed.split('\t').map(p => p.trim()).filter(Boolean);
+                    if (parts.length >= 2) {
                         scorePart = parts[parts.length - 1];
                         namePart = parts.slice(0, parts.length - 1).join(' ');
                     }
                 } else if (trimmed.includes(';')) {
-                    const parts = trimmed.split(';').map(p = p.trim()).filter(Boolean);
-                    if (parts.length = 2) {
+                    const parts = trimmed.split(';').map(p => p.trim()).filter(Boolean);
+                    if (parts.length >= 2) {
                         scorePart = parts[parts.length - 1];
                         namePart = parts.slice(0, parts.length - 1).join(' ');
                     }
                 } else if (trimmed.includes(',')) {
-                     Check if comma is decimal separator (e.g. Budi 75,5) or column delimiter (Budi, 75.5)
+                    // Check if comma is decimal separator (e.g. "Budi 75,5") or column delimiter ("Budi, 75.5")
                     const lastCommaIdx = trimmed.lastIndexOf(',');
                     const afterComma = trimmed.slice(lastCommaIdx + 1).trim();
                     const beforeComma = trimmed.slice(0, lastCommaIdx).trim();
-                    if (^d+([.,]d+)$.test(afterComma) && [a-zA-Z].test(beforeComma) && !d+$.test(beforeComma)) {
+                    if (/^\d+([.,]\d+)?$/.test(afterComma) && /[a-zA-Z]/.test(beforeComma) && !/\d+$/.test(beforeComma)) {
                         namePart = beforeComma;
                         scorePart = afterComma;
                     } else {
-                        const match = trimmed.match(^(.)s+([-+]d+([.,]d+))$);
+                        const match = trimmed.match(/^(.*?)\s+([-+]?\d+(?:[.,]\d+)?)$/);
                         if (match) {
                             namePart = match[1];
                             scorePart = match[2];
                         }
                     }
                 } else {
-                    const match = trimmed.match(^(.)s+([-+]d+([.,]d+))$);
+                    const match = trimmed.match(/^(.*?)\s+([-+]?\d+(?:[.,]\d+)?)$/);
                     if (match) {
                         namePart = match[1];
                         scorePart = match[2];
                     }
                 }
 
-                 Clean up leading numbering if user pasted 1. Ahmad or 1tAhmadt70
-                namePart = namePart.replace(^d+[.)-s]+, '').trim();
+                // Clean up leading numbering if user pasted "1. Ahmad" or "1\tAhmad\t70"
+                namePart = namePart.replace(/^\d+[\.\)\-\s]+/, '').trim();
                 scorePart = scorePart.replace(',', '.').trim();
 
                 const numericScore = parseFloat(scorePart);
                 if (namePart && !isNaN(numericScore)) {
                     parsedList.push({
-                        id Date.now() + Math.floor(Math.random()  100000) + parsedList.length,
-                        name namePart,
-                        originalScore clampNumber(numericScore, 0, 100, 0)
+                        id: Date.now() + Math.floor(Math.random() * 100000) + parsedList.length,
+                        name: namePart,
+                        originalScore: clampNumber(numericScore, 0, 100, 0)
                     });
                 }
             });
 
             if (parsedList.length === 0) {
-                showToast(Format tidak dikenali. Pastikan setiap baris berisi Nama Siswa diikuti Nilai Angka., error);
+                showToast("Format tidak dikenali. Pastikan setiap baris berisi Nama Siswa diikuti Nilai Angka.", "error");
                 return;
             }
 
             if (actionMode === 'replace') {
                 students = parsedList;
-                showToast(`Berhasil memuat ${parsedList.length} data siswa baru ke dalam tabel!`, success);
+                showToast(`Berhasil memuat ${parsedList.length} data siswa baru ke dalam tabel!`, "success");
             } else {
                 students = [...students, ...parsedList];
-                showToast(`Berhasil menambahkan ${parsedList.length} siswa ke tabel!`, success);
+                showToast(`Berhasil menambahkan ${parsedList.length} siswa ke tabel!`, "success");
             }
 
             document.getElementById('bulkPasteTextarea').value = '';
@@ -1615,9 +1615,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             recalculateAndRender();
         }
 
-        
-          Manual Single Student Addition
-         
+        /**
+         * Manual Single Student Addition
+         */
         function handleManualAdd(e) {
             e.preventDefault();
             const nameEl = document.getElementById('manualNameInput');
@@ -1626,15 +1626,15 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const name = nameEl.value.trim();
             const score = parseFloat(scoreEl.value);
 
-            if (!name  isNaN(score)) {
-                showToast(Mohon lengkapi Nama Siswa dan Nilai Asli yang valid., error);
+            if (!name || isNaN(score)) {
+                showToast("Mohon lengkapi Nama Siswa dan Nilai Asli yang valid.", "error");
                 return;
             }
 
             students.push({
-                id Date.now() + Math.floor(Math.random()  10000),
-                name name,
-                originalScore clampNumber(score, 0, 100, 0)
+                id: Date.now() + Math.floor(Math.random() * 10000),
+                name: name,
+                originalScore: clampNumber(score, 0, 100, 0)
             });
 
             nameEl.value = '';
@@ -1643,19 +1643,19 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
 
             saveToLocalStorage();
             recalculateAndRender();
-            showToast(`Siswa ${name} berhasil ditambahkan!`, success);
+            showToast(`Siswa "${name}" berhasil ditambahkan!`, "success");
         }
 
-        
-          Inline Edit & Delete Student Handlers
-         
+        /**
+         * Inline Edit & Delete Student Handlers
+         */
         function updateStudentName(id, newName) {
-            const trimmed = (newName  '').trim();
+            const trimmed = (newName || '').trim();
             if (!trimmed) {
                 recalculateAndRender();
                 return;
             }
-            const target = students.find(s = s.id === id);
+            const target = students.find(s => s.id === id);
             if (target) {
                 target.name = trimmed;
                 saveToLocalStorage();
@@ -1669,7 +1669,7 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 recalculateAndRender();
                 return;
             }
-            const target = students.find(s = s.id === id);
+            const target = students.find(s => s.id === id);
             if (target) {
                 target.originalScore = clampNumber(numeric, 0, 100, 0);
                 saveToLocalStorage();
@@ -1678,31 +1678,31 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
         }
 
         function deleteStudent(id) {
-            const idx = students.findIndex(s = s.id === id);
+            const idx = students.findIndex(s => s.id === id);
             if (idx !== -1) {
                 const removedName = students[idx].name;
                 students.splice(idx, 1);
                 saveToLocalStorage();
                 recalculateAndRender();
-                showToast(`Data ${removedName} telah dihapus.`, info);
+                showToast(`Data "${removedName}" telah dihapus.`, "info");
             }
         }
 
-        
-          Load 18 Sample Students for Simulation
-         
+        /**
+         * Load 18 Sample Students for Simulation
+         */
         function loadSampleData() {
             students = JSON.parse(JSON.stringify(SAMPLE_STUDENTS));
             saveToLocalStorage();
             recalculateAndRender();
-            showToast(Data simulasi kelas (18 siswa) berhasil dimuat!, success);
+            showToast("Data simulasi kelas (18 siswa) berhasil dimuat!", "success");
         }
 
-        
-          ============================================================================
-          VISUAL DISTRIBUTION CHART (CANVAS)
-          ============================================================================
-         
+        /**
+         * ============================================================================
+         * VISUAL DISTRIBUTION CHART (CANVAS)
+         * ============================================================================
+         */
         function toggleChartSection() {
             const panel = document.getElementById('chartContainerPanel');
             const textEl = document.getElementById('toggleChartText');
@@ -1728,7 +1728,7 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const data = (precalculated  getCalculatedStudents()).slice().sort((a, b) = a.originalScore - b.originalScore);
+            const data = (precalculated || getCalculatedStudents()).slice().sort((a, b) => a.originalScore - b.originalScore);
             if (data.length === 0) return;
 
             const padLeft = 42;
@@ -1738,13 +1738,13 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const w = canvas.width - padLeft - padRight;
             const h = canvas.height - padTop - padBottom;
 
-             Draw Horizontal Grid Lines (0, 25, 50, 75, 100)
+            // Draw Horizontal Grid Lines (0, 25, 50, 75, 100)
             ctx.font = '11px Inter, sans-serif';
             ctx.fillStyle = '#64748b';
             ctx.textAlign = 'right';
 
-            [0, 25, 50, 75, 100].forEach(val = {
-                const y = padTop + h - (val  100)  h;
+            [0, 25, 50, 75, 100].forEach(val => {
+                const y = padTop + h - (val / 100) * h;
                 ctx.strokeStyle = '#f1f5f9';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -1754,8 +1754,8 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 ctx.fillText(String(val), padLeft - 8, y + 4);
             });
 
-             Draw KKM Line (Dashed Red)
-            const kkmY = padTop + h - (config.kkm  100)  h;
+            // Draw KKM Line (Dashed Red)
+            const kkmY = padTop + h - (config.kkm / 100) * h;
             ctx.strokeStyle = '#f43f5e';
             ctx.lineWidth = 1.5;
             ctx.setLineDash([6, 4]);
@@ -1765,14 +1765,14 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             ctx.stroke();
             ctx.setLineDash([]);
 
-            const getX = (i) = data.length === 1  padLeft + w  2  padLeft + (i  (data.length - 1))  w;
-            const getY = (score) = padTop + h - (score  100)  h;
+            const getX = (i) => data.length === 1 ? padLeft + w / 2 : padLeft + (i / (data.length - 1)) * w;
+            const getY = (score) => padTop + h - (score / 100) * h;
 
-             Draw Original Score Line (Slate)
+            // Draw Original Score Line (Slate)
             ctx.strokeStyle = '#94a3b8';
             ctx.lineWidth = 2;
             ctx.beginPath();
-            data.forEach((d, i) = {
+            data.forEach((d, i) => {
                 const x = getX(i);
                 const y = getY(d.originalScore);
                 if (i === 0) ctx.moveTo(x, y);
@@ -1780,11 +1780,11 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             });
             ctx.stroke();
 
-             Draw Adjusted Score Line (Emerald)
+            // Draw Adjusted Score Line (Emerald)
             ctx.strokeStyle = '#10b981';
             ctx.lineWidth = 3;
             ctx.beginPath();
-            data.forEach((d, i) = {
+            data.forEach((d, i) => {
                 const x = getX(i);
                 const y = getY(d.adjustedScore);
                 if (i === 0) ctx.moveTo(x, y);
@@ -1792,13 +1792,13 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             });
             ctx.stroke();
 
-             Draw Points
-            data.forEach((d, i) = {
+            // Draw Points
+            data.forEach((d, i) => {
                 const x = getX(i);
                 const yOrig = getY(d.originalScore);
                 const yNew = getY(d.adjustedScore);
 
-                 Vertical connector
+                // Vertical connector
                 ctx.strokeStyle = 'rgba(16, 185, 129, 0.25)';
                 ctx.lineWidth = 1.5;
                 ctx.beginPath();
@@ -1806,59 +1806,59 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 ctx.lineTo(x, yNew);
                 ctx.stroke();
 
-                 Orig dot
+                // Orig dot
                 ctx.fillStyle = '#64748b';
                 ctx.beginPath();
-                ctx.arc(x, yOrig, 3.5, 0, Math.PI  2);
+                ctx.arc(x, yOrig, 3.5, 0, Math.PI * 2);
                 ctx.fill();
 
-                 New dot
+                // New dot
                 ctx.fillStyle = '#059669';
                 ctx.beginPath();
-                ctx.arc(x, yNew, 4.5, 0, Math.PI  2);
+                ctx.arc(x, yNew, 4.5, 0, Math.PI * 2);
                 ctx.fill();
             });
         }
 
-        
-          ============================================================================
-          MODULE E EXPORT, COPY TO CLIPBOARD & RESET FUNCTIONS
-          ============================================================================
-         
+        /**
+         * ============================================================================
+         * MODULE E: EXPORT, COPY TO CLIPBOARD & RESET FUNCTIONS
+         * ============================================================================
+         */
         function copyTableForExcel() {
             const calculated = getCalculatedStudents();
             if (calculated.length === 0) {
-                showToast(Tidak ada data siswa untuk disalin., error);
+                showToast("Tidak ada data siswa untuk disalin.", "error");
                 return;
             }
 
             const headers = [
-                No,
-                Nama Siswa,
-                Nilai Asli,
-                Status Awal,
-                Nilai Hasil Katrol,
-                Status Akhir,
-                Selisih (+Poin),
-                Persentase Kenaikan (%),
-                Peringkat Kelas
+                "No",
+                "Nama Siswa",
+                "Nilai Asli",
+                "Status Awal",
+                "Nilai Hasil Katrol",
+                "Status Akhir",
+                "Selisih (+Poin)",
+                "Persentase Kenaikan (%)",
+                "Peringkat Kelas"
             ];
 
-            const rows = calculated.map(s = [
+            const rows = calculated.map(s => [
                 s.no,
                 s.name,
                 s.originalScore,
-                s.passOld  Tuntas  Belum Tuntas,
+                s.passOld ? "Tuntas" : "Belum Tuntas",
                 formatDisplayNumber(s.adjustedScore),
-                s.passNew  Tuntas  Belum Tuntas,
-                (s.diffPoints = 0  +  ) + s.diffPoints,
-                s.pctIncrease + %,
+                s.passNew ? "Tuntas" : "Belum Tuntas",
+                (s.diffPoints >= 0 ? "+" : "") + s.diffPoints,
+                s.pctIncrease + "%",
                 s.rankOriginal
             ]);
 
-            const tsvContent = [headers.join('t'), ...rows.map(r = r.join('t'))].join('n');
+            const tsvContent = [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('\n');
 
-             Use hidden textarea + document.execCommand('copy') for universal iframe compatibility
+            // Use hidden textarea + document.execCommand('copy') for universal iframe compatibility
             const tempTextArea = document.createElement('textarea');
             tempTextArea.value = tsvContent;
             tempTextArea.style.position = 'fixed';
@@ -1868,9 +1868,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
 
             try {
                 document.execCommand('copy');
-                showToast(`Berhasil menyalin ${calculated.length} baris nilai! Silakan langsung Paste (Ctrl+V) di Microsoft Excel atau Google Sheets.`, success);
+                showToast(`Berhasil menyalin ${calculated.length} baris nilai! Silakan langsung Paste (Ctrl+V) di Microsoft Excel atau Google Sheets.`, "success");
             } catch (err) {
-                showToast(Gagal menyalin ke clipboard., error);
+                showToast("Gagal menyalin ke clipboard.", "error");
             } finally {
                 document.body.removeChild(tempTextArea);
             }
@@ -1879,39 +1879,39 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
         function exportToCSV() {
             const calculated = getCalculatedStudents();
             if (calculated.length === 0) {
-                showToast(Tidak ada data siswa untuk diunduh., error);
+                showToast("Tidak ada data siswa untuk diunduh.", "error");
                 return;
             }
 
             const headers = [
-                No,
-                Nama Siswa,
-                Nilai Asli,
-                Ketuntasan Awal,
-                Nilai Hasil Katrol,
-                Ketuntasan Akhir,
-                Selisih Penambahan (Poin),
-                Persentase Kenaikan (%),
-                Peringkat (Rank)
+                "No",
+                "Nama Siswa",
+                "Nilai Asli",
+                "Ketuntasan Awal",
+                "Nilai Hasil Katrol",
+                "Ketuntasan Akhir",
+                "Selisih Penambahan (Poin)",
+                "Persentase Kenaikan (%)",
+                "Peringkat (Rank)"
             ];
 
             const csvRows = [
                 headers.join(','),
-                ...calculated.map(s = [
+                ...calculated.map(s => [
                     s.no,
-                    `${s.name.replace(g, '')}`,
+                    `"${s.name.replace(/"/g, '""')}"`,
                     s.originalScore,
-                    s.passOld  Tuntas  Belum Tuntas,
+                    s.passOld ? "Tuntas" : "Belum Tuntas",
                     formatDisplayNumber(s.adjustedScore),
-                    s.passNew  Tuntas  Belum Tuntas,
+                    s.passNew ? "Tuntas" : "Belum Tuntas",
                     s.diffPoints,
                     `${s.pctIncrease}%`,
                     s.rankOriginal
                 ].join(','))
             ];
 
-            const csvString = 'uFEFF' + csvRows.join('rn');  BOM for Excel UTF-8 compatibility
-            const blob = new Blob([csvString], { type 'textcsv;charset=utf-8;' });
+            const csvString = '\uFEFF' + csvRows.join('\r\n'); // BOM for Excel UTF-8 compatibility
+            const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
@@ -1921,13 +1921,13 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
 
-            showToast(File laporan CSV berhasil diunduh!, success);
+            showToast("File laporan CSV berhasil diunduh!", "success");
         }
 
         function exportToExcel() {
             const calculated = getCalculatedStudents();
             if (calculated.length === 0) {
-                showToast(Tidak ada data siswa untuk diunduh., error);
+                showToast("Tidak ada data siswa untuk diunduh.", "error");
                 return;
             }
 
@@ -1937,27 +1937,27 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             }
 
             const worksheetData = [
-                [LAPORAN HASIL KATROL NILAI PROPORSIONAL - SMARTGRADE ADJUSTER],
-                [`Standar KKMKKTP ${config.kkm}  Metode ${document.getElementById('formulaSummaryFooter').textContent}`],
+                ["LAPORAN HASIL KATROL NILAI PROPORSIONAL - SMARTGRADE ADJUSTER"],
+                [`Standar KKM/KKTP: ${config.kkm} | Metode: ${document.getElementById('formulaSummaryFooter').textContent}`],
                 [],
                 [
-                    No,
-                    Nama Siswa,
-                    Nilai Asli,
-                    Status Awal,
-                    Nilai Hasil Katrol,
-                    Status Akhir,
-                    Selisih (+Poin),
-                    Persentase Kenaikan (%),
-                    Peringkat (Rank)
+                    "No",
+                    "Nama Siswa",
+                    "Nilai Asli",
+                    "Status Awal",
+                    "Nilai Hasil Katrol",
+                    "Status Akhir",
+                    "Selisih (+Poin)",
+                    "Persentase Kenaikan (%)",
+                    "Peringkat (Rank)"
                 ],
-                ...calculated.map(s = [
+                ...calculated.map(s => [
                     s.no,
                     s.name,
                     s.originalScore,
-                    s.passOld  Tuntas  Belum Tuntas,
+                    s.passOld ? "Tuntas" : "Belum Tuntas",
                     Number(formatDisplayNumber(s.adjustedScore)),
-                    s.passNew  Tuntas  Belum Tuntas,
+                    s.passNew ? "Tuntas" : "Belum Tuntas",
                     s.diffPoints,
                     `${s.pctIncrease}%`,
                     s.rankOriginal
@@ -1967,27 +1967,27 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             const wb = XLSX.utils.book_new();
             const ws = XLSX.utils.aoa_to_sheet(worksheetData);
 
-             Set column widths
+            // Set column widths
             ws['!cols'] = [
-                { wch 6 },
-                { wch 28 },
-                { wch 12 },
-                { wch 15 },
-                { wch 18 },
-                { wch 15 },
-                { wch 16 },
-                { wch 22 },
-                { wch 15 }
+                { wch: 6 },
+                { wch: 28 },
+                { wch: 12 },
+                { wch: 15 },
+                { wch: 18 },
+                { wch: 15 },
+                { wch: 16 },
+                { wch: 22 },
+                { wch: 15 }
             ];
 
-            XLSX.utils.book_append_sheet(wb, ws, Hasil Katrol Nilai);
+            XLSX.utils.book_append_sheet(wb, ws, "Hasil Katrol Nilai");
             XLSX.writeFile(wb, `Hasil_Katrol_Nilai_SmartGrade_${new Date().toISOString().slice(0, 10)}.xlsx`);
-            showToast(File Microsoft Excel (.xlsx) berhasil diunduh!, success);
+            showToast("File Microsoft Excel (.xlsx) berhasil diunduh!", "success");
         }
 
-        
-          Modal Handlers (No native alertconfirm)
-         
+        /**
+         * Modal Handlers (No native alert/confirm)
+         */
         function openResetModal() {
             const modal = document.getElementById('resetModal');
             modal.classList.remove('hidden');
@@ -2005,7 +2005,7 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             localStorage.removeItem(STORAGE_KEY_STUDENTS);
             closeResetModal();
             recalculateAndRender();
-            showToast(Seluruh data siswa telah direset., info);
+            showToast("Seluruh data siswa telah direset.", "info");
         }
 
         function openFormulaGuideModal() {
@@ -2020,9 +2020,9 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
             modal.classList.remove('flex');
         }
 
-        
-          Custom Toast Notification System
-         
+        /**
+         * Custom Toast Notification System
+         */
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -2038,17 +2038,17 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
                 icon = 'fa-circle-info text-emerald-300';
             }
 
-            toast.className = `pointer-events-auto flex items-start gap-3 px-4 py-3 rounded-xl border shadow-lg text-xs smtext-sm font-medium transition-all duration-300 ${colors}`;
+            toast.className = `pointer-events-auto flex items-start gap-3 px-4 py-3 rounded-xl border shadow-lg text-xs sm:text-sm font-medium transition-all duration-300 ${colors}`;
             toast.innerHTML = `
-                i class=fa-solid ${icon} text-base mt-0.5i
-                div class=flex-1 leading-snug${escapeHtml(message)}div
+                <i class="fa-solid ${icon} text-base mt-0.5"></i>
+                <div class="flex-1 leading-snug">${escapeHtml(message)}</div>
             `;
 
             container.appendChild(toast);
 
-            setTimeout(() = {
+            setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() = {
+                setTimeout(() => {
                     if (toast.parentNode) toast.parentNode.removeChild(toast);
                 }, 300);
             }, 3600);
@@ -2056,12 +2056,12 @@ body class=min-h-screen flex flex-col selectionbg-emerald-600 selectiontext-whit
 
         function escapeHtml(str) {
             return String(str)
-                .replace(&g, '&amp;')
-                .replace(g, '&lt;')
-                .replace(g, '&gt;')
-                .replace(g, '&quot;')
-                .replace('g, '&#039;');
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
-    script
-body
-html
+    </script>
+</body>
+</html>
